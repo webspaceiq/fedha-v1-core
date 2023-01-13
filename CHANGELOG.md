@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/webspaceiq/fedha-v1-core/compare/v1.0.0...v1.0.1) (2023-01-13)
+
+
+### Bug Fixes
+
+* Implemented treasury hardhat deploy script ([0e582fc](https://github.com/webspaceiq/fedha-v1-core/commit/0e582fcb2a2f577e84ca607131b53bcf8f54cddf))
+
 ## 1.0.0 (2023-01-13)
 
 
