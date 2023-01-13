@@ -1,0 +1,47 @@
+{
+  "name": "@webspaceiq/fedha-v1-core",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "files": [
+    "dist",
+    "README.md",
+    "contracts",
+    "artifacts"
+  ],
+  "scripts": {
+    "cp-typechain": "cp typechain/*.d.ts ./dist/types/typechain",
+    "build": "tsc --project lib.tsconfig.json && npm run cp-typechain",
+    "clean": "rm -rf artifacts/ types/ dist/ typechain/",
+    "compile": "SKIP_LOAD=true npx hardhat compile",
+    "prepublish": "npm run clean && npm run compile && npm run build",
+    "deploy": "if [ \"$SKIP_COMPILE\" = 'true' ]; then echo '[Warning] Skipping compilation'; else npm run compile; fi && npx hardhat deploy --no-compile",
+    "test": "npx hardhat test"
+  },
+  "keywords": [],
+  "author": "Fedha",
+  "license": "ISC",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-chai-matchers": "^1.0.5",
+    "@nomicfoundation/hardhat-toolbox": "^2.0.0",
+    "@openzeppelin/hardhat-upgrades": "^1.22.0",
+    "ethers": "^5.7.2",
+    "hardhat": "^2.12.4",
+    "hardhat-deploy": "^0.11.22"
+  },
+  "dependencies": {
+    "@aave/core-v3": "^1.16.2-beta.5",
+    "@chainlink/contracts": "^0.5.1",
+    "@openzeppelin/contracts": "^4.8.0",
+    "@openzeppelin/contracts-upgradeable": "^4.8.0",
+    "dotenv": "^16.0.3",
+    "solidity-util": "github:willitscale/solidity-util"
+  },
+  "publishConfig": {
+    "registry": " https://registry.npmjs.org"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/webspaceiq/fedha-v1-core"
+  }
+}

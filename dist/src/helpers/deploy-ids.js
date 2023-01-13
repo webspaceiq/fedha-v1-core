@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.MOCK_PRICE_ORACLE_ID = exports.PRICE_ORACLE_ID = exports.PROXY_ID = exports.IMPL_ID = exports.TEST_ASSET_SYMBOL = exports.TEST_ASSET_NAME = exports.TEST_ASSET_ID = exports.TEST_TOKEN_SYMBOL = exports.TEST_TOKEN_NAME = exports.TEST_TOKEN_ID = void 0;
+exports.TEST_TOKEN_ID = "AFUSDC";
+exports.TEST_TOKEN_NAME = "AFUSDC";
+exports.TEST_TOKEN_SYMBOL = "AFUSDC";
+exports.TEST_ASSET_ID = "FUSDC";
+exports.TEST_ASSET_NAME = "FUSDC";
+exports.TEST_ASSET_SYMBOL = "FUSDC";
+exports.IMPL_ID = "Implementation";
+exports.PROXY_ID = "Proxy";
+exports.PRICE_ORACLE_ID = "PriceOracle";
+exports.MOCK_PRICE_ORACLE_ID = "MockPriceOracle";

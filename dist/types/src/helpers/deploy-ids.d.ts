@@ -1,0 +1,10 @@
+export declare const TEST_TOKEN_ID = "AFUSDC";
+export declare const TEST_TOKEN_NAME = "AFUSDC";
+export declare const TEST_TOKEN_SYMBOL = "AFUSDC";
+export declare const TEST_ASSET_ID = "FUSDC";
+export declare const TEST_ASSET_NAME = "FUSDC";
+export declare const TEST_ASSET_SYMBOL = "FUSDC";
+export declare const IMPL_ID = "Implementation";
+export declare const PROXY_ID = "Proxy";
+export declare const PRICE_ORACLE_ID = "PriceOracle";
+export declare const MOCK_PRICE_ORACLE_ID = "MockPriceOracle";
