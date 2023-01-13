@@ -6,6 +6,9 @@
 ![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/webspaceiq/fedha-v1-core/@webspaceiq/fedha-v1-core?label=NPM)
 ![Github issues](https://img.shields.io/github/issues/webspaceiq/fedha-v1-core)
 ![Github last-commit](https://img.shields.io/github/last-commit/webspaceiq/fedha-v1-core)
+[![Docker Pulls](https://badgen.net/docker/pulls/webspaceiq/fedha-v1-core?icon=docker&label=Docker%20pulls)](https://hub.docker.com/r/webspaceiq/fedha-v1-core/)
+[![Docker Image Size](https://badgen.net/docker/size/webspaceiq/fedha-v1-core?icon=docker&label=image%20size)](https://hub.docker.com/r/webspaceiq/fedha-v1-core/)
+
 
 # FEDHA
 
