@@ -1,4 +1,4 @@
-name: NPM Publish
+name: release-please
 on:
   workflow_run:
     workflows: [Build]
