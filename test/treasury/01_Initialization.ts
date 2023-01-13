@@ -6,4 +6,7 @@ import * as DEPLOY_IDS from "../../src/helpers/deploy-ids";
 import { Fixtures } from "./Fixtures";
 
 describe("Treasury Initialization", function () {
+    it("Should revert when token address is empty", async function () {
+       
+    });
 });
