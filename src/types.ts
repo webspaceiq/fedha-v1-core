@@ -99,3 +99,7 @@ export type PriceOracleOptions = DeployOptions & {
     linkTokenAddr: tEthereumAddress,
     oracleOperatorAddr: tEthereumAddress,
 }
+export type TreasuryDeployOptions =  DeployOptions & {
+    tokenAddr: tEthereumAddress;
+    oracleAddr: tEthereumAddress;
+}

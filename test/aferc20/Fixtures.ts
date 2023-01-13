@@ -15,17 +15,16 @@ export class Fixtures {
     public static fixture(options: FERC20Options) {
         return async ({ deployments, getNamedAccounts, ethers }: HardhatRuntimeEnvironment,) => {
             await deployments.fixture(); // ensure you start from a fresh deployments
-            const [owner] = await ethers.getSigners();
             const { treasuryAdmin, other } = await getNamedAccounts();
             const oracleInstance = await DeployHelper.deployMockOracle(
                 DEPLOY_IDS.MOCK_PRICE_ORACLE_ID, treasuryAdmin);
 
-            const assetInstance = await DeployHelper.deployFERC20(
-                DEPLOY_IDS.TEST_ASSET_ID,
-                treasuryAdmin,
-                DEPLOY_IDS.TEST_ASSET_NAME,
-                DEPLOY_IDS.TEST_ASSET_SYMBOL
-            );
+            const assetInstance = await DeployHelper.deployFERC20({
+                id: DEPLOY_IDS.TEST_ASSET_ID,
+                owner: treasuryAdmin,
+                name: DEPLOY_IDS.TEST_ASSET_NAME,
+                symbol: DEPLOY_IDS.TEST_ASSET_SYMBOL
+            });
 
             const assetTokenInstance = await DeployHelper.deployAFERC20({
                 ...options,
@@ -50,12 +49,12 @@ export class Fixtures {
             const { treasuryAdmin } = await getNamedAccounts();
             const zeroAddr = ethers.utils.getAddress(ZERO_ADDRESS);
 
-            const assetInstance = await DeployHelper.deployFERC20(
-                DEPLOY_IDS.TEST_ASSET_ID,
-                treasuryAdmin,
-                DEPLOY_IDS.TEST_ASSET_NAME,
-                DEPLOY_IDS.TEST_ASSET_SYMBOL
-            );
+            const assetInstance = await DeployHelper.deployFERC20({
+                id: DEPLOY_IDS.TEST_ASSET_ID,
+                owner: treasuryAdmin,
+                name: DEPLOY_IDS.TEST_ASSET_NAME,
+                symbol: DEPLOY_IDS.TEST_ASSET_SYMBOL
+            });
 
             const assetTokenInstance = await DeployHelper.deployAFERC20({
                 ...options,
@@ -74,12 +73,12 @@ export class Fixtures {
             const { treasuryAdmin } = await getNamedAccounts();
             const oracleInstance = await DeployHelper.deployMockOracle(DEPLOY_IDS.MOCK_PRICE_ORACLE_ID, treasuryAdmin);
 
-            const assetInstance = await DeployHelper.deployFERC20(
-                DEPLOY_IDS.TEST_ASSET_ID,
-                treasuryAdmin,
-                DEPLOY_IDS.TEST_ASSET_NAME,
-                DEPLOY_IDS.TEST_ASSET_SYMBOL
-            );
+            const assetInstance = await DeployHelper.deployFERC20({
+                id: DEPLOY_IDS.TEST_ASSET_ID,
+                owner: treasuryAdmin,
+                name: DEPLOY_IDS.TEST_ASSET_NAME,
+                symbol: DEPLOY_IDS.TEST_ASSET_SYMBOL
+            });
 
             const assetTokenInstance = await DeployHelper.deployAFERC20({
                 ...options,
