@@ -36,5 +36,6 @@ library Errors {
   string public constant ZERO_BENEFICIARY_ADDRESS_NOT_VALID = '206'; // 'Zero address not valid'
   string public constant INVALID_TOKEN_NAME = '207'; // 'Zero address not valid'
   string public constant INVALID_TOKEN_SYMBOL = '208'; // 'Zero address not valid'
+  string public constant ZERO_VAULT_ADDRESS_NOT_VALID = '209'; // 'Zero address not valid'
   
 }

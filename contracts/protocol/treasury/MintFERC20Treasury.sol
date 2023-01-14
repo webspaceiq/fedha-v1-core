@@ -1,31 +1,40 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.17;
-import "./BaseTreasury.sol";
 
-contract MintFERC20Treasury is BaseTreasury {
+import "./Treasury.sol";
+import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 
-    constructor(address tokenAddr_, address oracleAddr_) {
-        require(tokenAddr_ != address(0), Errors.ZERO_ASSET_ADDRESS_NOT_VALID);
-        require(
-            oracleAddr_ != address(0),
-            Errors.ZERO_ORACLE_ADDRESS_NOT_VALID
-        );
-        _paused = true;
-        _tokenInstance = FERC20(tokenAddr_);
-        _oracleInstance = IPriceOracle(oracleAddr_);
+contract MintFERC20Treasury is Treasury {
+    using SafeMath for uint256;
+
+    constructor(address tokenAddr_, address oracleAddr_) Treasury(tokenAddr_, oracleAddr_) {
     }
 
-    function _mint(address reciepientAddr_, uint256 amount_) internal override {
-        // Transfer tokens to vault
-        _tokenInstance.transfer(reciepientAddr_, amount_);
+    /**
+     * @notice Mints a certain amount of tokens
+     * @param reciepientAddr_ The addresses of the asset
+     */
+    function mint(
+        address reciepientAddr_
+    ) public payable override nonReentrant {
+        require(msg.value > 0, Errors.ZERO_ASSET_AMOUNT_NOT_VALID);
+        require(
+            reciepientAddr_ != address(0),
+            Errors.ZERO_BENEFICIARY_ADDRESS_NOT_VALID
+        );
+
+        // Get price of asset
+        uint256 price = _oracleInstance.getPrice();
+        require(price > 0, Errors.ZERO_ASSET_PRICE_NOT_VALID);
+
+        uint256 mintValue = msg.value.div(price);
+        require(mintValue > 0, Errors.INSUFFICIENT_MINT_FUNDS);
+
+        _tokenInstance.mint(reciepientAddr_, mintValue);
+
+        emit Mint(msg.sender, reciepientAddr_, mintValue);
     }
 
     function _burn(uint256 amount_) internal override {
-        _tokenInstance.burn(amount_);
     }
-
-    function _disburse(
-        address recieptients_,
-        uint256 amounts_
-    ) internal override {}
 }

@@ -1,6 +1,6 @@
 import { deployments, ethers } from "hardhat";
 import { COMMON_DEPLOY_PARAMS } from "../../src/helpers/env";
-import { AFERC20Options, FERC20Options, NAFERC20Options, PriceOracleOptions, tEthereumAddress, TreasuryDeployOptions } from "../../src/types";
+import { AFERC20Options, FERC20Options, NAFERC20Options, PriceOracleOptions, tEthereumAddress, TransferFromFERC20TreasuryDeployOptions, TreasuryDeployOptions } from "../../src/types";
 import { AFERC20, FERC20, IPriceOracle, LinkToken, NAFERC20, Treasury } from "../../typechain";
 import { PRICE_ORACLE_ID } from "./deploy-ids";
 
@@ -96,6 +96,28 @@ export class DeployHelper {
         const { id, owner, tokenAddr, oracleAddr } = options;
         const treasuryDeployment = await deployments.deploy(id, {
             contract: "Treasury",
+            from: owner,
+            args: [tokenAddr, oracleAddr],
+            ...COMMON_DEPLOY_PARAMS
+        });
+        return await ethers.getContractAt(treasuryDeployment.abi, treasuryDeployment.address) as Treasury;
+    }
+
+    public static async deployTransferFromERC20Treasury(options: TransferFromFERC20TreasuryDeployOptions): Promise<Treasury> {
+        const { id, owner, tokenAddr, oracleAddr, vaultAddr } = options;
+        const treasuryDeployment = await deployments.deploy(id, {
+            contract: "TransferFromFERC20Treasury",
+            from: owner,
+            args: [tokenAddr, oracleAddr, vaultAddr],
+            ...COMMON_DEPLOY_PARAMS
+        });
+        return await ethers.getContractAt(treasuryDeployment.abi, treasuryDeployment.address) as Treasury;
+    }
+
+    public static async deployMintFERC20Treasury(options: TreasuryDeployOptions): Promise<Treasury> {
+        const { id, owner, tokenAddr, oracleAddr } = options;
+        const treasuryDeployment = await deployments.deploy(id, {
+            contract: "MintFERC20Treasury",
             from: owner,
             args: [tokenAddr, oracleAddr],
             ...COMMON_DEPLOY_PARAMS

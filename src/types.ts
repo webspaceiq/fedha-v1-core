@@ -103,3 +103,6 @@ export type TreasuryDeployOptions =  DeployOptions & {
     tokenAddr: tEthereumAddress;
     oracleAddr: tEthereumAddress;
 }
+export type TransferFromFERC20TreasuryDeployOptions =  TreasuryDeployOptions & {
+    vaultAddr: tEthereumAddress;
+}
