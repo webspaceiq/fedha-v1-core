@@ -15,6 +15,8 @@
     "clean": "rm -rf artifacts/ types/ dist/ typechain/",
     "compile": "SKIP_LOAD=true npx hardhat compile",
     "prepublish": "npm run clean && npm run compile && npm run build",
+    "postpublish": "npm run publish-npm",
+    "publish-npm": "npm publish --access public --ignore-scripts --@webspaceiq:registry='https://registry.npmjs.org'",
     "deploy": "if [ \"$SKIP_COMPILE\" = 'true' ]; then echo '[Warning] Skipping compilation'; else npm run compile; fi && npx hardhat deploy --no-compile",
     "test": "npx hardhat test"
   },
