@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/webspaceiq/fedha-v1-core/compare/v1.0.1...v1.1.0) (2023-01-14)
+
+
+### Features
+
+* Treasury functionality implemented and unit tested ([09165c6](https://github.com/webspaceiq/fedha-v1-core/commit/09165c69b46dabc2e5f0bcdd476a318d9a96937a))
+
 ## [1.0.1](https://github.com/webspaceiq/fedha-v1-core/compare/v1.0.0...v1.0.1) (2023-01-13)
 
 
