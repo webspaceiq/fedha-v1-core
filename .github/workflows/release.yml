@@ -38,7 +38,7 @@ jobs:
         run: npm config set registry https://npm.pkg.github.com
         #if: ${{ steps.release.outputs.release_created }}
       - name: Github package registry authentication
-        run: npm set //npm.pkg.github.com/:_authToken ${{ secrets.pat }}
+        run: npm set //npm.pkg.github.com/:_authToken ${{ secrets.GITHUB_TOKEN }}
         #if: ${{ steps.release.outputs.release_created }}
       - name: Npm registry authentication
         run: npm set //registry.npmjs.org/:_authToken ${{ secrets.NPM_PUBLISH_TOKEN }}
