@@ -2,15 +2,16 @@
 pragma solidity ^0.8.17;
 
 interface ITreasury {
-    event Mint(address recieptient, uint256 amount);
+    event Mint(address callerAddr, address recieptientAddr, uint256 amount);
     event Burn(address callerAddr, uint256 amount);
+    event Disburse(address callerAddr, address recieptientAddr, uint256 amount);
 
     /**
      * @notice Mints a certain amount of tokens
-     * @param recieptient_ The addresses of the asset
+     * @param recieptientAddr The addresses of the asset
      * @param amount_ The amount of the asset to burn
      */
-    function mint(address recieptient_, uint256 amount_) external payable;
+    function mint(address recieptientAddr, uint256 amount_) external payable;
 
     /**
      * @notice Burns a certain amount of the token

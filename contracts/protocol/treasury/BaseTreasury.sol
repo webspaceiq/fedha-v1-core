@@ -10,23 +10,13 @@ import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
 
-contract Treasury is AccessControl, ITreasury, ReentrancyGuard {
+abstract contract BaseTreasury is AccessControl, ITreasury, ReentrancyGuard {
     using SafeMath for uint256;
-    FERC20 internal _tokenInstance; 
+    FERC20 internal _tokenInstance;
     IPriceOracle internal _oracleInstance;
     bool internal _paused;
-    bytes32 public constant TREASURY_ADMIN_ROLE = keccak256("TREASURY_ADMIN_ROLE");
-
-    constructor(address tokenAddr_, address oracleAddr_) {
-        require(tokenAddr_ != address(0), Errors.ZERO_ASSET_ADDRESS_NOT_VALID);
-        require(
-            oracleAddr_ != address(0),
-            Errors.ZERO_ORACLE_ADDRESS_NOT_VALID
-        );
-        _paused = true;
-        _tokenInstance = FERC20(tokenAddr_);
-        _oracleInstance = IPriceOracle(oracleAddr_);
-    }
+    bytes32 public constant TREASURY_ADMIN_ROLE =
+        keccak256("TREASURY_ADMIN_ROLE");
 
     // Function to receive Ether. msg.data must be empty
     receive() external payable {
@@ -42,7 +32,9 @@ contract Treasury is AccessControl, ITreasury, ReentrancyGuard {
         return address(_oracleInstance);
     }
 
-    function setOracleAddr(address oracleAddr_) public override onlyRole(TREASURY_ADMIN_ROLE) {
+    function setOracleAddr(
+        address oracleAddr_
+    ) public override onlyRole(TREASURY_ADMIN_ROLE) {
         require(
             oracleAddr_ != address(0),
             Errors.ZERO_ORACLE_ADDRESS_NOT_VALID
@@ -54,7 +46,9 @@ contract Treasury is AccessControl, ITreasury, ReentrancyGuard {
         return address(_tokenInstance);
     }
 
-    function setTokenAddr(address tokenAddr_) public override onlyRole(TREASURY_ADMIN_ROLE) {
+    function setTokenAddr(
+        address tokenAddr_
+    ) public override onlyRole(TREASURY_ADMIN_ROLE) {
         require(tokenAddr_ != address(0), Errors.ZERO_ASSET_ADDRESS_NOT_VALID);
         _tokenInstance = FERC20(tokenAddr_);
     }
@@ -89,8 +83,9 @@ contract Treasury is AccessControl, ITreasury, ReentrancyGuard {
         emit Mint(msg.sender, reciepientAddr_, amount_);
     }
 
-    function burn(uint256 amount_) external override  onlyRole(TREASURY_ADMIN_ROLE) nonReentrant {
-
+    function burn(
+        uint256 amount_
+    ) external override onlyRole(TREASURY_ADMIN_ROLE) nonReentrant {
         require(amount_ > 0, Errors.ZERO_TOKEN_AMOUNT_NOT_VALID);
         require(
             _tokenInstance.balanceOf(address(this)) >= amount_,
@@ -105,17 +100,26 @@ contract Treasury is AccessControl, ITreasury, ReentrancyGuard {
         emit Burn(msg.sender, amount_);
     }
 
-    function _mint(address reciepientAddr_, uint256 amount_) internal virtual {
-        // Transfer tokens to vault
-        _tokenInstance.transfer(reciepientAddr_, amount_);
-    }
-
-    function _burn(uint256 amount_) internal virtual {
-        _tokenInstance.burn(amount_);
-    }
-
     function disburse(
         address[] calldata recieptients_,
         uint256[] calldata amounts_
-    ) public override onlyRole(TREASURY_ADMIN_ROLE) {}
+    ) public override onlyRole(TREASURY_ADMIN_ROLE) {
+        require(
+            recieptients_.length == amounts_.length,
+            Errors.INCONSISTENT_PARAMS_LENGTH
+        );
+        for (uint256 i = 0; i < recieptients_.length; i++) {
+            _disburse(recieptients_[i], amounts_[i]);
+            emit Disburse(msg.sender, recieptients_[i], amounts_[i]);
+        }
+    }
+
+    function _mint(address reciepientAddr_, uint256 amount_) internal virtual;
+
+    function _burn(uint256 amount_) internal virtual;
+
+    function _disburse(
+        address recieptients_,
+        uint256 amounts_
+    ) internal virtual;
 }
