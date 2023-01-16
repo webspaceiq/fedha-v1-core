@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/webspaceiq/fedha-v1-core/compare/v1.1.0...v1.2.0) (2023-01-16)
+
+
+### Features
+
+* Fedha governance ([c024b86](https://github.com/webspaceiq/fedha-v1-core/commit/c024b865162cf7eb394575701f56f1560a380852))
+
 ## [1.1.0](https://github.com/webspaceiq/fedha-v1-core/compare/v1.0.1...v1.1.0) (2023-01-14)
 
 
