@@ -24,19 +24,19 @@
 <!-- FEDHA PROTOCOL V1 -->
 # Fedha Protocol V1
 
-Fedha v1 is a decentralized finance (DeFi) platform that allows users to exhange, borrow, lend, and earn interest on a variety of digital assets.
+Fedha is a decentralized finance (DeFi) platform that allows users to exhange, borrow, lend, and earn interest on a variety of digital assets.
 
 <!-- FEATURES -->
 ## Features
 
 - Multi-collateral lending and borrowing: Users can lend and borrow multiple digital assets, including stablecoins and cryptocurrencies.
-- Multi-token exchange: Fedha v1 supports trading of any ERC-20 token, allowing for a wide range of assets to be traded on the platform.
+- Multi-token exchange: Fedha supports trading of any ERC-20 token, allowing for a wide range of assets to be traded on the platform.
 - Interest rates: Users can earn interest on their deposited assets and pay interest on borrowed assets. Interest rates are determined by the supply and demand of each asset.
-- Automated market maker (AMM) model: Fedha v1 currency exhange uses a liquidity pool system to provide fair and efficient trading.
-- Liquidity provision: Users can provide liquidity to the Fedha v1 market and earn a portion of the trading fees.
+- Automated market maker (AMM) model: Fedha currency exhange uses a liquidity pool system to provide fair and efficient trading.
+- Liquidity provision: Users can provide liquidity to the Fedha market and earn a portion of the trading fees.
 - Flash loans: Users can take out a loan for a short period of time and pay it back in the same time period.
-- Stablecoins: Fedha v1 supports a variety of stablecoins, including USDC, DAI, and USDT.
-- Decentralized governance: Fedha v1 is governed by its community of users, allowing for decentralized decision making on the future development and direction of the protocol.
+- Stablecoins: Fedha supports a variety of stablecoins, including USDC, DAI, and USDT.
+- Decentralized governance: Fedha is governed by its community of users, allowing for decentralized decision making on the future development and direction of the protocol.
 
 <!-- Getting started -->
 # Getting Started
