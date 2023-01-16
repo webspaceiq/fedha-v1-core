@@ -106,3 +106,14 @@ export type TreasuryDeployOptions =  DeployOptions & {
 export type TransferFromFERC20TreasuryDeployOptions =  TreasuryDeployOptions & {
     vaultAddr: tEthereumAddress;
 }
+export type TimelockDeployOptions =  DeployOptions & {
+    minDelay: BigNumber;
+    proposers: tEthereumAddress[];
+    executors: tEthereumAddress[];
+    admin: tEthereumAddress
+}
+export type GovernorDeployOptions =  DeployOptions & {
+    name: string;
+    tokenAddr: tEthereumAddress;
+    timelockAddr: tEthereumAddress;
+}

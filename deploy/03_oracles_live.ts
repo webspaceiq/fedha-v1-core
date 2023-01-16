@@ -50,6 +50,6 @@ const func: DeployFunction = async function ({ deployments, getNamedAccounts, ..
 };
 export default func;
 func.dependencies = [];
-func.id = 'MockPriceOracle';
-func.tags = ["core", "oracles"];
+func.id = "PriceOracles";
+func.tags = ["oracles", "core"];
 func.skip = async (env: HardhatRuntimeEnvironment) => !network.live;

@@ -34,7 +34,7 @@ describe("PriceOracle Events", function () {
         const { oracle, mockOracle } = await loadFixture(
             Fixtures.Fixture
         );
-        const callbackValue = 777
+        const callbackValue = 777;
         const transaction = await oracle.requestData();
         const transactionReceipt = await transaction.wait(1);
         const requestId = transactionReceipt.events[0].topics[1]

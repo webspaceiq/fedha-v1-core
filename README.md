@@ -1,63 +1,118 @@
-
-![Ethereum](https://img.shields.io/badge/Ethereum-3C3C3D?style=flat&logo=Ethereum&logoColor=white)
-![Solidity](https://img.shields.io/badge/Solidity-%23363636.svg?style=flat&logo=solidity&logoColor=white)
-![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=flat&logo=typescript&logoColor=white)
+<p align="center">
+    
 ![Build workflow](https://github.com/webspaceiq/fedha-v1-core/actions/workflows/node.js.yml/badge.svg)
-![NPM](https://img.shields.io/github/package-json/dependency-version/webspaceiq/fedha-v1-core/@webspaceiq/fedha-v1-core?label=NPM)
-![Github issues](https://img.shields.io/github/issues/webspaceiq/fedha-v1-core)
-![Github last-commit](https://img.shields.io/github/last-commit/webspaceiq/fedha-v1-core)
-[![Docker Pulls](https://badgen.net/docker/pulls/webspaceiq/fedha-v1-core?icon=docker&label=Docker%20pulls)](https://hub.docker.com/r/webspaceiq/fedha-v1-core/)
-[![Docker Image Size](https://badgen.net/docker/size/webspaceiq/fedha-v1-core?icon=docker&label=image%20size)](https://hub.docker.com/r/webspaceiq/fedha-v1-core/)
+![Github last-commit](https://img.shields.io/github/last-commit/webspaceiq/fedha-v1-core?label=Last%20commit)
+![Github issues](https://img.shields.io/github/issues/webspaceiq/fedha-v1-core?label=Issues)
+[![Version](https://img.shields.io/npm/v/@webspaceiq/fedha-v1-core?label=NPM)](https://www.npmjs.com/package/@webspaceiq/fedha-v1-core)
+[![Docker pulls](https://badgen.net/docker/pulls/webspaceiq/fedha-v1-core?icon=docker&label=Docker%20pulls)](https://hub.docker.com/r/webspaceiq/fedha-v1-core/)
+[![Docker image size](https://badgen.net/docker/size/webspaceiq/fedha-v1-core?icon=docker&label=Image%20size)](https://hub.docker.com/r/webspaceiq/fedha-v1-core/)
+</p>
 
+<div id="top"></div>
 
-# FEDHA
+- [Fedha Protocol V1](#fedha-protocol-v1)
+  - [Features](#features)
+- [Getting Started](#getting-started)
+  - [Development setup](#development-setup)
+  - [NPM Installation](#npm-installation)
+- [Contributing](#contributing)
+- [License](#license)
+- [Maintainers](#maintainers)
+- [Contact](#contact)
+- [Acknowledgments](#acknowledgments)
 
-Simple native asset backed ERC20 tokens and their associated price oracles. This project is heavy inspired by AAVE V3 platform. The repository uses Docker Compose and Hardhat as development environment for compilation, testing and deployment tasks.
+<!-- FEDHA PROTOCOL V1 -->
+# Fedha Protocol V1
 
+Fedha v1 is a decentralized finance (DeFi) platform that allows users to exhange, borrow, lend, and earn interest on a variety of digital assets.
 
-## Getting Started
+<!-- FEATURES -->
+## Features
+
+- Multi-collateral lending and borrowing: Users can lend and borrow multiple digital assets, including stablecoins and cryptocurrencies.
+- Multi-token exchange: Fedha v1 supports trading of any ERC-20 token, allowing for a wide range of assets to be traded on the platform.
+- Interest rates: Users can earn interest on their deposited assets and pay interest on borrowed assets. Interest rates are determined by the supply and demand of each asset.
+- Automated market maker (AMM) model: Fedha v1 currency exhange uses a liquidity pool system to provide fair and efficient trading.
+- Liquidity provision: Users can provide liquidity to the Fedha v1 market and earn a portion of the trading fees.
+- Flash loans: Users can take out a loan for a short period of time and pay it back in the same time period.
+- Stablecoins: Fedha v1 supports a variety of stablecoins, including USDC, DAI, and USDT.
+- Decentralized governance: Fedha v1 is governed by its community of users, allowing for decentralized decision making on the future development and direction of the protocol.
+
+<!-- Getting started -->
+# Getting Started
+<!-- LOCAL DEVELOPMENT -->
+## Development setup
+### Clone repo
 
 You can clone this repo:
 
 `git clone https://github.com/webspaceiq/fedha-v1-core.git`
 
+The following assumes the use of `node@>=10`.
 
-Install packages:
+### Install Dependencies
 
 `npm install`
 
+### Compile Contracts
 
-## Setup
+`npm run compile`
 
-The repository uses Docker Compose to manage sensitive keys and load the configuration. Prior to any action like test or deploy, you must run `docker-compose up` to start the `contracts-env` container, and then connect to the container console via `docker-compose exec contracts-env bash`.
+### Run Tests
 
-Follow the next steps to setup the repository:
+`npm run test`
 
-- Install `docker` and `docker-compose`
-- Create an environment file named `.env` and fill the next environment variables
+<!-- NPM INSTALL -->
+## NPM Installation
 
-```
-# Add Alchemy or Infura provider keys, alchemy takes preference at the config level
-ALCHEMY_KEY=""
-INFURA_KEY=""
+You can install `@webspaceiq/fedha-v1-core` as an NPM package in your solidity project to import the contracts and interfaces:
 
+`npm install @webspaceiq/fedha-v1-core`
 
-# Optional, if you plan to use Tenderly scripts
-TENDERLY_PROJECT=""
-TENDERLY_USERNAME=""
+Import at Solidity files:
 
 ```
-## Test
+import {ITreasury} from "@webspaceiq/fedha-v1-core/contracts/interfaces/ITreasury.sol";
 
-You can run the full test suite with the following commands:
+contract GetLit {
 
+  function mint(address user, uint256 amount) public {
+    ITreasury(treasury).mint(user, amount);
+  }
+}
 ```
-# In one terminal
-docker-compose up
 
-# Open another tab or terminal
-docker-compose exec contracts-env bash
+The JSON artifacts with the ABI and Bytecode are also included in the bundled NPM package at `artifacts/` directory.
 
-# A new Bash terminal is prompted, connected to the container
-npm run test
-```
+<!-- CONTRIBUTING -->
+## Contributing
+
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+<!-- LICENSE -->
+## License
+
+Distributed under the MIT License. See `LICENSE.md` for more information.
+
+<!-- MAINTAINERS -->
+## Maintainers
+Edward Banfa - [@ebanfa](https://github.com/ebanfa)
+
+<!-- CONTACT -->
+## Contact
+Fedha - [@FedhaDefi](https://twitter.com/FedhaDefi)
+
+<!-- ACKNOWLEDGMENTS -->
+## Acknowledgments
+
+- [Aave](https://docs.openzeppelin.com/contracts/4.x/governance)
+- [Uniswap](https://github.com/OpenZeppelin/openzeppelin-contracts/tree/master/contracts/governance)

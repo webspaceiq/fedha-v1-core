@@ -32,6 +32,6 @@ export class HelperFunctions {
     }
 
 
-    public static async waitForTx(tx: ContractTransaction) { await tx.wait(1) }
+    public static waitForTx = async (tx: ContractTransaction) => await tx.wait(1) 
 
 }

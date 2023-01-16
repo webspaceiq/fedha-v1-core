@@ -36,5 +36,5 @@ const func: DeployFunction = async function (
 
 export default func;
 func.dependencies = [];
-func.id = 'NAFERC20';
-func.tags = ["core", "assets"];
+func.id = "NAFERC20";
+func.tags = [ "assets", "tokens", "core"];

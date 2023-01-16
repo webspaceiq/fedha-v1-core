@@ -2,21 +2,11 @@ import { loadFixture } from "@nomicfoundation/hardhat-network-helpers";
 import { expect } from "chai";
 import { deployments, ethers, getNamedAccounts } from "hardhat";
 import { Fixtures } from "./Fixtures";
-import * as DEPLOY_IDS from "../../src/helpers/deploy-ids";
-import { EMPTY_STRING, FAKE_ADDRESS, ZERO, ZERO_ADDRESS } from "../../src/helpers/constants";
-import { PromiseOrValue } from "../../typechain/common";
+import { FAKE_ADDRESS, ZERO_ADDRESS } from "../../src/helpers/constants";
 import { tEthereumAddress } from "../../src/types";
 import { BigNumber } from "ethers";
 
 describe("Treasury Interfaces", function () {
-    describe("Recieve", function () {
-        it("Should revert when amount of msg.value is zero", async function () {
-        });
-    });
-    describe("Fallback", function () {
-        it("Should revert when amount of msg.value is zero", async function () {
-        });
-    });
     describe("GetTokenAddr", function () {
         it("Should return the address of the FERC20 token contract", async function () {
             const fixture = deployments.createFixture(Fixtures.fixture());

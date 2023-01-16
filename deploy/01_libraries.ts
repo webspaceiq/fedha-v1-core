@@ -13,5 +13,5 @@ const func: DeployFunction = async function ({ deployments, getNamedAccounts, ..
 };
 export default func;
 func.dependencies = [];
-func.id = 'Libraries';
-func.tags = ["core", "libraries"];
+func.id = "Libraries";
+func.tags = [ "libraries", "core"];

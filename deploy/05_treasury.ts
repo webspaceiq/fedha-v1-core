@@ -20,14 +20,14 @@ const func: DeployFunction = async function (
     const configuration = ConfigUtil.getMarketConfiguration(MARKET_NAME as ConfigNames);
 
     const deployedPriceOracle = await DeployHelper.deployMockOracle(
-        DEPLOY_IDS.MOCK_TREASURY_PRICE_ORACLE_ID, treasuryAdmin
+        "Treasury", treasuryAdmin
     );
     
     const deployedToken = await DeployHelper.deployFERC20({
         owner: treasuryAdmin,
-        id: DEPLOY_IDS.GOVERNANCE_TOKEN_ID,
-        name: DEPLOY_IDS.GOVERNANCE_TOKEN_NAME,
-        symbol: DEPLOY_IDS.GOVERNANCE_TOKEN_SYMBOL
+        id: DEPLOY_IDS.TEST_TOKEN_ID,
+        name: DEPLOY_IDS.TEST_TOKEN_NAME,
+        symbol: DEPLOY_IDS.TEST_TOKEN_SYMBOL
     });
 
     await DeployHelper.deployTreasury({
@@ -40,5 +40,5 @@ const func: DeployFunction = async function (
 };
 export default func;
 func.dependencies = [];
-func.id = 'Governance';
-func.tags = ["core", "governance"];
+func.id = "Treasury";
+func.tags = ["treasury", "core"];
