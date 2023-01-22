@@ -1,15 +1,17 @@
 name: release-please
+
 on:
   workflow_run:
     workflows: [Build]
     types: [completed]
+
 jobs:
   release-please:
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [16.x, 18.x]
+        node-version: [16.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     if: ${{ github.event.workflow_run.conclusion == 'success' }} 
@@ -19,29 +21,3 @@ jobs:
         with:
           release-type: node
           package-name: ${{ github.event.repository.name }}
-      # The logic below handles the npm publication:
-      - uses: actions/checkout@v2
-        # these if statements ensure that a publication only occurs when
-        # a new release is created: 
-        #if: ${{ steps.release.outputs.release_created }}
-      - uses: actions/setup-node@v3
-        #if: ${{ steps.release.outputs.release_created }}
-        with:
-          node-version: ${{ matrix.node-version }}
-          registry-url: 'https://npm.pkg.github.com'
-          scope: '@webspaceiq'
-      - run: npm ci
-        #if: ${{ steps.release.outputs.release_created }}
-      #- run: npm run ci:test
-        if: ${{ steps.release.outputs.release_created }}
-      - name: Set package registry
-        run: npm config set registry https://npm.pkg.github.com
-        if: ${{ steps.release.outputs.release_created }}
-      - name: Github package registry authentication
-        run: npm set //npm.pkg.github.com/:_authToken ${{ secrets.GITHUB_TOKEN }}
-        if: ${{ steps.release.outputs.release_created }}
-      - name: Npm registry authentication
-        run: npm set //registry.npmjs.org/:_authToken ${{ secrets.NPM_PUBLISH_TOKEN }}
-        if: ${{ steps.release.outputs.release_created }}
-      - name: Publish the package to Github and Npm package registries
-        run: npm publish

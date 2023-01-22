@@ -8,12 +8,33 @@ import "@openzeppelin/contracts/governance/extensions/GovernorVotes.sol";
 import "@openzeppelin/contracts/governance/extensions/GovernorVotesQuorumFraction.sol";
 import "@openzeppelin/contracts/governance/extensions/GovernorTimelockControl.sol";
 
-contract FERC20VotesGovernor is Governor, GovernorSettings, GovernorCountingSimple, GovernorVotes, GovernorVotesQuorumFraction, GovernorTimelockControl {
-    constructor(string memory name_, IVotes _token, TimelockController _timelock)
+contract FERC20VotesGovernor is
+    Governor,
+    GovernorSettings,
+    GovernorCountingSimple,
+    GovernorVotes,
+    GovernorVotesQuorumFraction,
+    GovernorTimelockControl
+{
+    constructor(
+        string memory name_,
+        IVotes _token,
+        TimelockController _timelock,
+        uint256 initialVotingDelay,
+        uint256 initialVotingPeriod,
+        uint256 initialProposalThreshold,
+        uint256 initialQuorumFraction
+    )
         Governor(name_)
-        GovernorSettings(1 /* 1 block */, 50400 /* 1 week */, 0)
+        //GovernorSettings(1 /* 1 block */, 50400 /* 1 week */, 0)
+        GovernorSettings(
+            initialVotingDelay,
+            initialVotingPeriod,
+            initialProposalThreshold
+        )
         GovernorVotes(_token)
-        GovernorVotesQuorumFraction(4)
+        //GovernorVotesQuorumFraction(4),
+        GovernorVotesQuorumFraction(initialProposalThreshold)
         GovernorTimelockControl(_timelock)
     {}
 
@@ -37,7 +58,9 @@ contract FERC20VotesGovernor is Governor, GovernorSettings, GovernorCountingSimp
         return super.votingPeriod();
     }
 
-    function quorum(uint256 blockNumber)
+    function quorum(
+        uint256 blockNumber
+    )
         public
         view
         override(IGovernor, GovernorVotesQuorumFraction)
@@ -46,7 +69,9 @@ contract FERC20VotesGovernor is Governor, GovernorSettings, GovernorCountingSimp
         return super.quorum(blockNumber);
     }
 
-    function state(uint256 proposalId)
+    function state(
+        uint256 proposalId
+    )
         public
         view
         override(Governor, GovernorTimelockControl)
@@ -55,11 +80,12 @@ contract FERC20VotesGovernor is Governor, GovernorSettings, GovernorCountingSimp
         return super.state(proposalId);
     }
 
-    function propose(address[] memory targets, uint256[] memory values, bytes[] memory calldatas, string memory description)
-        public
-        override(Governor, IGovernor)
-        returns (uint256)
-    {
+    function propose(
+        address[] memory targets,
+        uint256[] memory values,
+        bytes[] memory calldatas,
+        string memory description
+    ) public override(Governor, IGovernor) returns (uint256) {
         return super.propose(targets, values, calldatas, description);
     }
 
@@ -72,18 +98,22 @@ contract FERC20VotesGovernor is Governor, GovernorSettings, GovernorCountingSimp
         return super.proposalThreshold();
     }
 
-    function _execute(uint256 proposalId, address[] memory targets, uint256[] memory values, bytes[] memory calldatas, bytes32 descriptionHash)
-        internal
-        override(Governor, GovernorTimelockControl)
-    {
+    function _execute(
+        uint256 proposalId,
+        address[] memory targets,
+        uint256[] memory values,
+        bytes[] memory calldatas,
+        bytes32 descriptionHash
+    ) internal override(Governor, GovernorTimelockControl) {
         super._execute(proposalId, targets, values, calldatas, descriptionHash);
     }
 
-    function _cancel(address[] memory targets, uint256[] memory values, bytes[] memory calldatas, bytes32 descriptionHash)
-        internal
-        override(Governor, GovernorTimelockControl)
-        returns (uint256)
-    {
+    function _cancel(
+        address[] memory targets,
+        uint256[] memory values,
+        bytes[] memory calldatas,
+        bytes32 descriptionHash
+    ) internal override(Governor, GovernorTimelockControl) returns (uint256) {
         return super._cancel(targets, values, calldatas, descriptionHash);
     }
 
@@ -96,12 +126,9 @@ contract FERC20VotesGovernor is Governor, GovernorSettings, GovernorCountingSimp
         return super._executor();
     }
 
-    function supportsInterface(bytes4 interfaceId)
-        public
-        view
-        override(Governor, GovernorTimelockControl)
-        returns (bool)
-    {
+    function supportsInterface(
+        bytes4 interfaceId
+    ) public view override(Governor, GovernorTimelockControl) returns (bool) {
         return super.supportsInterface(interfaceId);
     }
 }

@@ -1,0 +1,40 @@
+name: Social Media Notification
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  discord_notification:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Send Discord notification
+      uses: rtCamp/action-discord-notify@v2
+      with:
+        webhook: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        message: "New release ${{ github.event.release.name }} of ${{ github.repository }} is available. Check it out at ${{ github.event.release.html_url }}"
+
+# jobs:
+#   post_to_twitter:
+#     runs-on: ubuntu-latest
+#     steps:
+#     - name: Checkout code
+#       uses: actions/checkout@v2
+#     - name: Set up Node.js
+#       uses: actions/setup-node@v1
+#       with:
+#         node-version: 14
+#     - name: Install dependencies
+#       run: npm ci
+#     - name: Post to Twitter
+#       run: npx twit --tweet "New release of ${{ env.GITHUB_REPOSITORY }} is now available! Check it out at ${{ env.GITHUB_REPOSITORY }}/releases/tag/${{ env.GITHUB_REF }}"
+#       env:
+#         TWIT_CONSUMER_KEY: ${{ secrets.TWIT_CONSUMER_KEY }}
+#         TWIT_CONSUMER_SECRET: ${{ secrets.TWIT_CONSUMER_SECRET }}
+#         TWIT_ACCESS_TOKEN: ${{ secrets.TWIT_ACCESS_TOKEN }}
+#         TWIT_ACCESS_TOKEN_SECRET: ${{ secrets.TWIT_ACCESS_TOKEN_SECRET }}
+

@@ -30,16 +30,16 @@ contract TransferFromFERC20Treasury is Treasury {
             reciepientAddr_ != address(0),
             Errors.ZERO_BENEFICIARY_ADDRESS_NOT_VALID
         );
-        require(
-            _tokenInstance.balanceOf(_vaultAddr) >= msg.value,
-            Errors.NOT_ENOUGH_AVAILABLE_USER_BALANCE
-        );
         // Get price of asset
         uint256 price = _oracleInstance.getPrice();
         require(price > 0, Errors.ZERO_ASSET_PRICE_NOT_VALID);
 
         uint256 mintValue = msg.value.div(price);
         require(mintValue > 0, Errors.INSUFFICIENT_MINT_FUNDS);
+        require(
+            _tokenInstance.balanceOf(_vaultAddr) >= mintValue,
+            Errors.NOT_ENOUGH_AVAILABLE_USER_BALANCE
+        );
 
         _tokenInstance.transferFrom(_vaultAddr, reciepientAddr_, mintValue);
 

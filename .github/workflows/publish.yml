@@ -1,0 +1,54 @@
+name: Publish
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  docker-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3 
+        name: Check out code
+      
+      - uses: mr-smithers-excellent/docker-build-push@v5
+        name: Build & push Docker image
+        with:
+          image: webspaceiq/fedha-v1-core
+          tags: v1, latest
+          registry: docker.io
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+  npm-publish:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@webspaceiq'
+
+      - run: npm ci
+
+      - name: Set package registry
+        run: npm config set registry https://npm.pkg.github.com
+
+      - name: Github package registry authentication
+        run: npm set //npm.pkg.github.com/:_authToken ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Npm registry authentication
+        run: npm set //registry.npmjs.org/:_authToken ${{ secrets.NPM_PUBLISH_TOKEN }}
+
+      - name: Publish the package to Github and Npm package registries
+        run: npm publish
+
+

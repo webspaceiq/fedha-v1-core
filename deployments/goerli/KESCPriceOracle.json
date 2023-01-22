@@ -1,0 +1,92 @@
+{
+  "address": "0x924c3b442d89A23b9D3536eF0cc6f5Ee0B140Ca6",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "price_",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [],
+      "name": "getPrice",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x404dce3f4f55389e045e9b33319c67ef745d4a52cc92beb155513183d5c26ec4",
+  "receipt": {
+    "to": null,
+    "from": "0xF0DC7b8889615Da49eeFFE5AB71bc93509d5E0ac",
+    "contractAddress": "0x924c3b442d89A23b9D3536eF0cc6f5Ee0B140Ca6",
+    "transactionIndex": 10,
+    "gasUsed": "93780",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0xe37cd8165403b5a3ab8a0793882d3f91a12def1f4e895e629b0877bad23d6a5c",
+    "transactionHash": "0x404dce3f4f55389e045e9b33319c67ef745d4a52cc92beb155513183d5c26ec4",
+    "logs": [],
+    "blockNumber": 8327150,
+    "cumulativeGasUsed": "860163",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    "5"
+  ],
+  "numDeployments": 1,
+  "solcInputHash": "5cc5d0a9b3d2623a1fe6bf2a9e867f5a",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.17+commit.8df45f5f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"price_\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"getPrice\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"getPrice()\":{\"returns\":{\"_0\":\"The price of the asset*\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"getPrice()\":{\"notice\":\"Returns the asset price in the base currency\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/test/MockPriceOracle.sol\":\"MockPriceOracle\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"none\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":9999},\"remappings\":[]},\"sources\":{\"contracts/interfaces/IPriceOracle.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.17;\\n\\ninterface IPriceOracle {\\n\\n  /**\\n   * @notice Returns the asset price in the base currency\\n   * @return The price of the asset\\n   **/\\n  function getPrice() external view returns (uint256);\\n}\",\"keccak256\":\"0xfc2292555a6d908904dfac562c95616bf5d73d3e46479ae3f07427f9ef29e845\",\"license\":\"MIT\"},\"contracts/test/MockPriceOracle.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.17;\\n\\nimport \\\"../interfaces/IPriceOracle.sol\\\";\\n\\ncontract MockPriceOracle is IPriceOracle {\\n    uint256 internal _price;\\n\\n    constructor(uint256 price_) {\\n        _price = price_;\\n    }\\n\\n    function getPrice() external view override returns (uint256) {\\n        return _price;\\n    }\\n}\\n\",\"keccak256\":\"0x9a826407dd1c8c21c348e877c863434ea4183099d50ad2ab5c95763d72a35036\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506040516100ad3803806100ad83398101604081905261002f91610037565b600055610050565b60006020828403121561004957600080fd5b5051919050565b604f8061005e6000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c806398d5fdca14602d575b600080fd5b60005460405190815260200160405180910390f3fea164736f6c6343000811000a",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c806398d5fdca14602d575b600080fd5b60005460405190815260200160405180910390f3fea164736f6c6343000811000a",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "getPrice()": {
+        "returns": {
+          "_0": "The price of the asset*"
+        }
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "getPrice()": {
+        "notice": "Returns the asset price in the base currency"
+      }
+    },
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 16988,
+        "contract": "contracts/test/MockPriceOracle.sol:MockPriceOracle",
+        "label": "_price",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_uint256"
+      }
+    ],
+    "types": {
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}

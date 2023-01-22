@@ -1,5 +1,5 @@
-describe("PriceOracle Events", function () {
+describe("FERC20 Events", function () {
 
-    it("Should revert with message 'Invalid http url'", async function () {
+    it("Should ", async function () {
     });
 });

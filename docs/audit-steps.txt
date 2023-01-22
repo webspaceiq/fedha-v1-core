@@ -1,0 +1,13 @@
+    1. Review the code: Review the smart contract code to ensure it is written in a language that is easily understood, is well-structured, and follows industry best practices.
+
+    2. Test the contract: Test the smart contract by running it on a testnet or a local blockchain network. This will help identify any bugs or errors that may exist in the contract.
+
+    3. Check for security vulnerabilities: Check the smart contract for common security vulnerabilities such as reentrancy attacks, denial of service attacks, and unauthorized access.
+
+    4. Verify the contract's logic: Verify that the contract's logic is sound and that it is functioning as intended. This includes checking that the contract's code is properly handling events, transactions, and state changes.
+
+    5. Check for compliance: Verify that the smart contract is compliant with any relevant regulations or legal requirements.
+
+    6. Review the contract's dependencies: Review any external dependencies or libraries used in the smart contract. Make sure they are up to date and have no known vulnerabilities.
+
+    7. Document the findings: Document any issues or concerns found during the audit process and provide recommendations for how to address them.

@@ -8,19 +8,25 @@ import { DEFAULT_NAMED_ACCOUNTS } from "./src/helpers/constants";
 require('dotenv').config();
 
 const MAINNET_RPC_URL =
-    process.env.INFURA_MAINNET_RPC_URL ||
     process.env.ALCHEMY_MAINNET_RPC_URL ||
-    "https://eth-mainnet.alchemyapi.io/v2/your-api-key";
+    process.env.INFURA_MAINNET_RPC_URL ||
+    "https://eth-mainnet.alchemyapi.io/v2/Q19ExJWkeqnIgRYFDwAJ6paDc7rojKzM";
 
 const POLYGON_MAINNET_RPC_URL =
-    process.env.INFURA_POLYGON_MAINNET_RPC_URL ||
     process.env.ALCHEMY_POLYGON_MAINNET_RPC_URL || 
-    "https://polygon-mainnet.alchemyapi.io/v2/your-api-key";
+    process.env.INFURA_POLYGON_MAINNET_RPC_URL ||
+    "https://polygon-mainnet.alchemyapi.io/v2/enKVRaOWmra6OVMZuBq2tBuJ1f8PXIUx";
+
+
+const POLYGON_MUMBAI_RPC_URL =
+process.env.ALCHEMY_POLYGON_MUMBAI_RPC_URL || 
+process.env.INFURA_POLYGON_MUMBAI_RPC_URL ||
+"https://polygon-mumbai.g.alchemy.com/v2/enKVRaOWmra6OVMZuBq2tBuJ1f8PXIUx";
 
 const GOERLI_RPC_URL =
-    process.env.INFURA_GOERLI_RPC_URL ||
     process.env.ALCHEMY_GOERLI_RPC_URL || 
-    "https://eth-goerli.alchemyapi.io/v2/your-api-key";
+    process.env.INFURA_GOERLI_RPC_URL ||
+    "https://eth-goerli.alchemyapi.io/v2/Q19ExJWkeqnIgRYFDwAJ6paDc7rojKzM";
 
 const PRIVATE_KEY = process.env.PRIVATE_KEY || "Your key"
 // optional
@@ -79,14 +85,19 @@ const config: HardhatUserConfig = {
             },
             chainId: 31337,
         },
-        /* localhost: {
-            chainId: 31337,
-        },
         goerli: {
             url: GOERLI_RPC_URL,
             accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
             chainId: 5,
         },
+        polygon_mumbai: {
+            url: POLYGON_MUMBAI_RPC_URL,
+            accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
+        }
+        /* localhost: {
+            chainId: 31337,
+        },
+        
         mainnet: {
             url: MAINNET_RPC_URL,
             accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
