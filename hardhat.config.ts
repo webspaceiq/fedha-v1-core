@@ -85,7 +85,7 @@ const config: HardhatUserConfig = {
             },
             chainId: 31337,
         },
-        goerli: {
+        /* goerli: {
             url: GOERLI_RPC_URL,
             accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
             chainId: 5,
@@ -93,7 +93,7 @@ const config: HardhatUserConfig = {
         polygon_mumbai: {
             url: POLYGON_MUMBAI_RPC_URL,
             accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
-        }
+        } */
         /* localhost: {
             chainId: 31337,
         },
