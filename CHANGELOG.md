@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.0](https://github.com/webspaceiq/fedha-v1-core/compare/v1.2.0...v1.3.0) (2023-01-23)
+
+
+### Features
+
+* Complete refactor of deployment and testing code. ([c93eb1d](https://github.com/webspaceiq/fedha-v1-core/commit/c93eb1d2fc621cfc63bde3aecc2b133d436493de))
+* Complete refactor of deployment and testing code. ([2d42f99](https://github.com/webspaceiq/fedha-v1-core/commit/2d42f9940fd66548397913548faa3d5c5ad1bd18))
+
 ## [1.2.0](https://github.com/webspaceiq/fedha-v1-core/compare/v1.1.0...v1.2.0) (2023-01-16)
 
 
