@@ -7,7 +7,8 @@
     "dist",
     "README.md",
     "contracts",
-    "artifacts"
+    "artifacts",
+    "tsconfig.json"
   ],
   "scripts": {
     "cp-typechain": "cp typechain/*.d.ts ./dist/types/typechain",

@@ -15,7 +15,7 @@ const MAINNET_RPC_URL =
 const POLYGON_MAINNET_RPC_URL =
     process.env.ALCHEMY_POLYGON_MAINNET_RPC_URL || 
     process.env.INFURA_POLYGON_MAINNET_RPC_URL ||
-    "https://polygon-mainnet.alchemyapi.io/v2/enKVRaOWmra6OVMZuBq2tBuJ1f8PXIUx";
+    "https://polygon-mainnet.g.alchemy.com/v2/C8AHOAEAsuaF9zPJr3iwOmltHCivx3Nn";
 
 
 const POLYGON_MUMBAI_RPC_URL =
@@ -85,15 +85,19 @@ const config: HardhatUserConfig = {
             },
             chainId: 31337,
         },
-        /* goerli: {
+        goerli: {
             url: GOERLI_RPC_URL,
             accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
             chainId: 5,
         },
-        polygon_mumbai: {
+        polygon: {
+            url: POLYGON_MAINNET_RPC_URL,
+            accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
+        },
+        mumbai: {
             url: POLYGON_MUMBAI_RPC_URL,
             accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
-        } */
+        }
         /* localhost: {
             chainId: 31337,
         },

@@ -5,6 +5,7 @@ import { DeployTimelockService } from "./deploy-timelock";
 import { DeployGovernorService } from "./deploy-governor";
 import { DeployHelper } from "../../helpers/deploy-helper";
 import { FERC20VotesGovernor, FERC20VotesGovernorTimelock } from "../../../typechain";
+import { Contract } from "ethers";
 
 @IsService()
 export class DeployGovernanceService {
@@ -65,11 +66,17 @@ export class DeployGovernanceService {
         const timelockExecutorRole = await timelockInstance.EXECUTOR_ROLE();
         const timelockCancellerRole = await timelockInstance.CANCELLER_ROLE();
 
-        await timelockInstance.grantRole(timelockProposerRole, governorInstance.address);
-        await timelockInstance.grantRole(timelockExecutorRole, governorInstance.address);
-        await timelockInstance.grantRole(timelockCancellerRole, governorInstance.address);
+        let tx = await (timelockInstance as Contract).grantRole(timelockProposerRole, governorInstance.address);
+        tx.wait(1);
 
-        await tokenInstance.grantRole(tokenMinterRole, timelockInstance.address);
+        tx = await timelockInstance.grantRole(timelockExecutorRole, governorInstance.address);
+        tx.wait(1);
+        
+        tx = await timelockInstance.grantRole(timelockCancellerRole, governorInstance.address);
+        tx.wait(1);
+
+        tx = await tokenInstance.grantRole(tokenMinterRole, timelockInstance.address);
+        tx.wait(1);
 
         return governorInstance;
     }

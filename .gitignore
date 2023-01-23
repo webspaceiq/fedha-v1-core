@@ -1,11 +1,20 @@
 node_modules
 .env
-coverage
-coverage.json
 typechain
 typechain-types
 
 # Hardhat files
 cache
 artifacts
+/types
+contracts/hardhat-dependency-compiler
+
+deployed-contracts.json
+
+coverage
+.coverage_artifacts
+.coverage_cache
+.coverage_contracts
+coverage.json
+deployments/
 
