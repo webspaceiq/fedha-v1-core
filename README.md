@@ -1,6 +1,6 @@
 <p align="center">
     
-![Build workflow](https://github.com/webspaceiq/fedha-v1-core/actions/workflows/node.js.yml/badge.svg)
+![Build workflow](https://github.com/webspaceiq/fedha-v1-core/actions/workflows/integrate.yml/badge.svg)
 ![Github last-commit](https://img.shields.io/github/last-commit/webspaceiq/fedha-v1-core?label=Last%20commit)
 ![Github issues](https://img.shields.io/github/issues/webspaceiq/fedha-v1-core?label=Issues)
 [![Version](https://img.shields.io/npm/v/@webspaceiq/fedha-v1-core?label=NPM)](https://www.npmjs.com/package/@webspaceiq/fedha-v1-core)

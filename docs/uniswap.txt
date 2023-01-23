@@ -1,0 +1,34 @@
+#!/bin/bash
+This script deploys Uniswap v2 on a Hardhat network
+Set environment variables
+
+export HARDHAT_NETWORK=hardhat
+export ETH_PRIVATE_KEY=<YOUR_PRIVATE_KEY>
+Install dependencies
+
+npm install --save-dev hardhat
+npm install --save-dev @openzeppelin/contracts
+npm install --save-dev @uniswap/v2-core
+Compile contracts
+
+npx hardhat compile
+Deploy Uniswap Router
+
+npx hardhat deploy --network $HARDHAT_NETWORK --from $ETH_PRIVATE_KEY --contract UniswapV2Router
+Deploy Uniswap Factory
+
+npx hardhat deploy --network $HARDHAT_NETWORK --from $ETH_PRIVATE_KEY --contract UniswapV2Factory
+Deploy Token A
+
+npx hardhat deploy --network $HARDHAT_NETWORK --from $ETH_PRIVATE_KEY --contract TokenA
+Deploy Token B
+
+npx hardhat deploy --network $HARDHAT_NETWORK --from $ETH_PRIVATE_KEY --contract TokenB
+Add liquidity to the Uniswap pool
+
+npx hardhat run --network $HARDHAT_NETWORK --from $ETH_PRIVATE_KEY --script add-liquidity.js
+Verify the pool has been created and has liquidity
+
+npx hardhat run --network $HARDHAT_NETWORK --from $ETH_PRIVATE_KEY --script verify-pool.js
+
+echo "Uniswap v2 deployment complete!"
