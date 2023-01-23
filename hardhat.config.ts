@@ -90,7 +90,7 @@ const config: HardhatUserConfig = {
             accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
             chainId: 5,
         },
-        polygon: {
+        /* polygon: {
             url: POLYGON_MAINNET_RPC_URL,
             accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
         },
@@ -98,7 +98,7 @@ const config: HardhatUserConfig = {
             url: POLYGON_MUMBAI_RPC_URL,
             accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
         }
-        /* localhost: {
+        localhost: {
             chainId: 31337,
         },
         
