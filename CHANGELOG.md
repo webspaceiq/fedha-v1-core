@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/webspaceiq/fedha-v1-core/compare/v1.3.0...v1.3.1) (2023-01-23)
+
+
+### Bug Fixes
+
+* Added missing Uniswap contracts. ([29d1e23](https://github.com/webspaceiq/fedha-v1-core/commit/29d1e230499a19bf8cff042b19ac774f9f35b01b))
+
 ## [1.3.0](https://github.com/webspaceiq/fedha-v1-core/compare/v1.2.0...v1.3.0) (2023-01-23)
 
 
