@@ -1,5 +1,9 @@
 # The FEDHA Token
 
+## What does Fedha mean?
+Fedha is the Swahili word for money. Swahili is the most widely spoken language in Africa. 
+
+## The FEDHA token
 The FEDHA token is built on the Ethereum blockchain and uses the ERC-20 standard for tokenization. One of the key features of the Fedha token is that it allows holders to participate in the governance of the Fedha protocol. This means that holders can vote on proposed changes and upgrades to the protocol, giving them a say in how the platform is developed and managed.
 
 Another important feature of the FEDHA token is that it provides holders with access to exclusive features and benefits on the Fedha platform. For example, holders may be able to access higher lending and borrowing limits, or receive preferential treatment when it comes to interest rates.
