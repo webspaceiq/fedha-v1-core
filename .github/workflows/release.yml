@@ -21,3 +21,4 @@ jobs:
         with:
           release-type: node
           package-name: ${{ github.event.repository.name }}
+          token: ${{ secrets.pat }}

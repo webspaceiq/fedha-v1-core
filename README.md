@@ -26,6 +26,9 @@
 
 Fedha is a decentralized finance (DeFi) platform that allows users to exhange, borrow, lend, and earn interest on a variety of digital assets.
 
+## What does Fedha mean?
+Fedha is the Swahili word for money. Swahili is the most widely spoken language in Africa. 
+
 <!-- FEATURES -->
 ## Features
 
