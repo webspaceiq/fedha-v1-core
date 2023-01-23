@@ -1,13 +1,16 @@
 name: Social Media Notification
 
 on:
-  release:
-    types: [created]
+  workflow_run:
+    workflows: ["release-please"]
+    types:
+      - completed
 
 jobs:
   discord_notification:
     runs-on: ubuntu-latest
     
+    if: ${{ github.event.workflow_run.conclusion == 'success' }} 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
