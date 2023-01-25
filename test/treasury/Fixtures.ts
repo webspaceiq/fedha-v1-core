@@ -2,7 +2,7 @@ import { deployments } from "hardhat";
 import { serviceExecutor } from "../../src";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { DeployTreasuryServiceContext } from "../../src/types";
-import { DeployTreasuryService } from "../../src/services/treasury/deploy";
+import { DeployTreasuryService } from "../../src/services/fedha/treasury/deploy";
 
 export class Fixtures {
 

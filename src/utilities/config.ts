@@ -39,13 +39,13 @@ export class ConfigUtil {
         return assets;
     }
 
-    public static getPriceOracles(
+    public static getTokenOracles(
         configuration: TYPES.IFedhaConfiguration): TYPES.IOracleConfigutation[] {
 
         const oracles: TYPES.IOracleConfigutation[] = []
-        const assetSymbols = Object.keys(configuration.PriceOracles);
+        const assetSymbols = Object.keys(configuration.TokenOracles);
         for (let index = 0; index < assetSymbols.length; index++) {
-            const oracle = configuration.PriceOracles[index];
+            const oracle = configuration.TokenOracles[index];
             oracles.push(oracle);
         }
         return oracles;

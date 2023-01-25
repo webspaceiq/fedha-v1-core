@@ -22,7 +22,7 @@
 - [Acknowledgments](#acknowledgments)
 
 <!-- FEDHA PROTOCOL V1 -->
-# Fedha Protocol V1
+# Fedha Protocol
 
 Fedha is a decentralized finance (DeFi) platform that allows users to exhange, borrow, lend, and earn interest on a variety of digital assets.
 

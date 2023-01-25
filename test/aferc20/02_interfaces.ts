@@ -81,7 +81,7 @@ describe("AFERC20 Interfaces", function () {
 
             const assetInstance = await DeployHelper.getDeployedERC20Token(TEST_ASSET_ID);
             const tokenInstance = await DeployHelper.getDeployedERC20Token(TEST_TOKEN_ID) as AFERC20;
-            const oracleInstance = await DeployHelper.getDeployedPriceOracle(`${TEST_TOKEN_ID}PriceOracle`);
+            const oracleInstance = await DeployHelper.getDeployedTokenOracle(`${TEST_TOKEN_ID}TokenOracle`);
 
             const initialTokenBalance = await tokenInstance.balanceOf(notDeployer.address);
             // Funding and preapproval
@@ -149,7 +149,7 @@ describe("AFERC20 Interfaces", function () {
             const [deployer, notDeployer] = await ethers.getSigners();
             const assetInstance = await DeployHelper.getDeployedERC20Token(TEST_ASSET_ID);
             const tokenInstance = await DeployHelper.getDeployedERC20Token(TEST_TOKEN_ID) as AFERC20;
-            const oracleInstance = await DeployHelper.getDeployedPriceOracle(`${TEST_TOKEN_ID}PriceOracle`);
+            const oracleInstance = await DeployHelper.getDeployedTokenOracle(`${TEST_TOKEN_ID}TokenOracle`);
 
             // Funding and preapproval
             await assetInstance.mint(deployer.address, assetAmountToMint);

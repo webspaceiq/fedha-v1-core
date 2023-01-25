@@ -1,8 +1,8 @@
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { serviceExecutor } from "../../src";
-import { DeployChainlinkOracleAndOpratorService } from "../../src/services/oracle/deploy-chainlink";
-import { DeployChainlinkPriceOracleService } from "../../src/services/oracle/deploy-chainlink-oracle";
-import { DeployChainlinkOracleAndOpratorServiceContext, DeployChainlinkPriceOracleServiceContext } from "../../src/types";
+import { DeployChainlinkOracleAndOpratorService } from "../../src/services/fedha/oracle/deploy-chainlink";
+import { DeployChainlinkTokenOracleService } from "../../src/services/fedha/oracle/deploy-chainlink-oracle";
+import { DeployChainlinkOracleAndOpratorServiceContext, DeployChainlinkTokenOracleServiceContext } from "../../src/types";
 
 export class Fixtures {
 
@@ -20,13 +20,13 @@ export class Fixtures {
 
     /**
      */
-    public static priceOracleWithoutOperatorFixture(data: Omit<DeployChainlinkPriceOracleServiceContext, "hre">) {
+    public static priceOracleWithoutOperatorFixture(data: Omit<DeployChainlinkTokenOracleServiceContext, "hre">) {
         return async (hre: HardhatRuntimeEnvironment,) => {
             const { deployments } = hre;
             await deployments.fixture(); // ensure you start from a fresh deployments
             await serviceExecutor
-                .executeService<DeployChainlinkPriceOracleServiceContext, Promise<void>>(
-                    { data: { hre, ...data}, serviceName: DeployChainlinkPriceOracleService.serviceName });
+                .executeService<DeployChainlinkTokenOracleServiceContext, Promise<void>>(
+                    { data: { hre, ...data}, serviceName: DeployChainlinkTokenOracleService.serviceName });
         }
     }
 

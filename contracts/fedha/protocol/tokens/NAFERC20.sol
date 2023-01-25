@@ -4,7 +4,7 @@ pragma solidity ^0.8.17;
 import "./FERC20.sol";
 import "../libraries/Errors.sol";
 import "../../interfaces/IAFERC20.sol";
-import "../../interfaces/IPriceOracle.sol";
+import "../../interfaces/ITokenOracle.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
 import "@openzeppelin/contracts/security/Pausable.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
@@ -26,7 +26,7 @@ contract NAFERC20 is FERC20, ReentrancyGuard {
         uint256 value
     );
 
-    IPriceOracle _priceOracle;
+    ITokenOracle _priceOracle;
 
     constructor(
         string memory name_,
@@ -37,7 +37,7 @@ contract NAFERC20 is FERC20, ReentrancyGuard {
             priceOracle_ != address(0),
             Errors.ZERO_ORACLE_ADDRESS_NOT_VALID
         );
-        _priceOracle = IPriceOracle(priceOracle_);
+        _priceOracle = ITokenOracle(priceOracle_);
     }
 
     // Function to receive Ether. msg.data must be empty

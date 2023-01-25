@@ -1,7 +1,7 @@
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { DeployNAFERC20ServiceContext } from "../../src/types";
 import { serviceExecutor } from "../../src";
-import { DeployNAFERC20Service } from "../../src/services/token/deploy-naferc20";
+import { DeployNAFERC20Service } from "../../src/services/fedha/token/deploy-naferc20";
 
 export class Fixtures {
     /**

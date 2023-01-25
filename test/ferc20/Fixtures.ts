@@ -1,7 +1,7 @@
 import { deployments, ethers } from "hardhat";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { serviceExecutor } from "../../src";
-import { DeployFERC20Service } from "../../src/services/token/deploy-ferc20";
+import { DeployFERC20Service } from "../../src/services/fedha/token/deploy-ferc20";
 import { DeployFERC20ServiceContext } from "../../src/types";
 
 export type FixtureContext = Omit<DeployFERC20ServiceContext, "hre">;

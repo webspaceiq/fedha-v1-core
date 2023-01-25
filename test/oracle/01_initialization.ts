@@ -7,7 +7,7 @@ import { MARKET_NAME, ConfigNames } from "../../src/helpers/env";
 import { ConfigUtil } from "../../src/utilities/config";
 import { Fixtures } from "./Fixtures";
 
-describe("PriceOracle Initialization", function () {
+describe("TokenOracle Initialization", function () {
 
     it("Should revert with message 'Invalid http url'", async function () {
         const { utils } = ethers;

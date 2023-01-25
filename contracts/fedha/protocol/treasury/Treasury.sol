@@ -3,7 +3,7 @@ pragma solidity ^0.8.17;
 
 import "../libraries/Errors.sol";
 import "../../interfaces/ITreasury.sol";
-import "../../interfaces/IPriceOracle.sol";
+import "../../interfaces/ITokenOracle.sol";
 import "../tokens/FERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
@@ -13,7 +13,7 @@ import "@openzeppelin/contracts/access/AccessControl.sol";
 contract Treasury is AccessControl, ITreasury, ReentrancyGuard {
     using SafeMath for uint256;
     FERC20 internal _tokenInstance;
-    IPriceOracle internal _oracleInstance;
+    ITokenOracle internal _oracleInstance;
     bool internal _paused;
     bytes32 public constant TREASURY_ADMIN_ROLE =
         keccak256("TREASURY_ADMIN_ROLE");
@@ -26,7 +26,7 @@ contract Treasury is AccessControl, ITreasury, ReentrancyGuard {
         );
         _paused = true;
         _tokenInstance = FERC20(tokenAddr_);
-        _oracleInstance = IPriceOracle(oracleAddr_);
+        _oracleInstance = ITokenOracle(oracleAddr_);
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _grantRole(TREASURY_ADMIN_ROLE, msg.sender);
     }
@@ -55,7 +55,7 @@ contract Treasury is AccessControl, ITreasury, ReentrancyGuard {
             oracleAddr_ != address(0),
             Errors.ZERO_ORACLE_ADDRESS_NOT_VALID
         );
-        _oracleInstance = IPriceOracle(oracleAddr_);
+        _oracleInstance = ITokenOracle(oracleAddr_);
     }
 
     /**

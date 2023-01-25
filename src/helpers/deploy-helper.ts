@@ -27,9 +27,9 @@ export class DeployHelper {
         return await ethers.getContractAt(abi, address) as TYPECHAIN.FERC20;
     }
     
-    public static async getDeployedPriceOracle(id: string): Promise<TYPECHAIN.IPriceOracle> {
+    public static async getDeployedTokenOracle(id: string): Promise<TYPECHAIN.ITokenOracle> {
         const { abi, address } = await deployments.get(id);
-        return await ethers.getContractAt(abi, address) as TYPECHAIN.IPriceOracle;
+        return await ethers.getContractAt(abi, address) as TYPECHAIN.ITokenOracle;
     }
 
     public static async getDeployedChainlinkMockOracle(id: string): Promise<TYPECHAIN.MockOracle> {
@@ -52,20 +52,20 @@ export class DeployHelper {
         return await ethers.getContractAt(abi, address) as Contract;
     }
     
-    public static async deployMockOracle(id: string, owner: TYPES.tEthereumAddress): Promise<TYPECHAIN.IPriceOracle> {
+    public static async deployMockOracle(id: string, owner: TYPES.tEthereumAddress): Promise<TYPECHAIN.ITokenOracle> {
         const priceOracleDeployment = await deployments.deploy(`${id}${PRICE_ORACLE_ID}`, {
-            contract: "MockPriceOracle",
+            contract: "MockTokenOracle",
             from: owner,
             args: [12],
             ...COMMON_DEPLOY_PARAMS
         });
         return await ethers.getContractAt(
-            priceOracleDeployment.abi, priceOracleDeployment.address) as TYPECHAIN.IPriceOracle;
+            priceOracleDeployment.abi, priceOracleDeployment.address) as TYPECHAIN.ITokenOracle;
     }
 
-    public static async deployPriceOracle(options: TYPES.PriceOracleOptions): Promise<TYPECHAIN.IPriceOracle> {
+    public static async deployTokenOracle(options: TYPES.TokenOracleOptions): Promise<TYPECHAIN.ITokenOracle> {
         const priceOracleDeployment = await deployments.deploy(`${options.id}${PRICE_ORACLE_ID}`, {
-            contract: "PriceOracle",
+            contract: "TokenOracle",
             from: options.owner,
             args: [
                 options.httpUrl,
@@ -76,7 +76,7 @@ export class DeployHelper {
             ...COMMON_DEPLOY_PARAMS
         });
         return await ethers.getContractAt(
-            priceOracleDeployment.abi, priceOracleDeployment.address) as TYPECHAIN.IPriceOracle;
+            priceOracleDeployment.abi, priceOracleDeployment.address) as TYPECHAIN.ITokenOracle;
     }
     
 }

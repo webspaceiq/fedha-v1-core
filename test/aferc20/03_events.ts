@@ -1,7 +1,5 @@
-import { loadFixture } from "@nomicfoundation/hardhat-network-helpers";
 import { expect } from "chai";
 import { deployments, ethers } from "hardhat";
-import { Fixtures } from "./Fixtures";
 import * as DEPLOY_IDS from "../../src/helpers/deploy-ids";
 import { DeployHelper } from "../../src/helpers/deploy-helper";
 import { AFERC20 } from "../../typechain";
@@ -40,7 +38,7 @@ describe("AFERC20 Events", function () {
             const [deployer, notDeployer] = await ethers.getSigners();
             const assetInstance = await DeployHelper.getDeployedERC20Token(DEPLOY_IDS.TEST_ASSET_ID);
             const tokenInstance = await DeployHelper.getDeployedERC20Token(DEPLOY_IDS.TEST_TOKEN_ID) as AFERC20;
-            const oracleInstance = await DeployHelper.getDeployedPriceOracle(`${DEPLOY_IDS.TEST_TOKEN_ID}PriceOracle`);
+            const oracleInstance = await DeployHelper.getDeployedTokenOracle(`${DEPLOY_IDS.TEST_TOKEN_ID}TokenOracle`);
 
             // Funding and preapproval
             await assetInstance.mint(deployer.address, assetAmountToMint);

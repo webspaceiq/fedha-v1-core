@@ -1,7 +1,5 @@
-import { loadFixture } from "@nomicfoundation/hardhat-network-helpers";
 import { expect } from "chai";
 import { deployments, ethers } from "hardhat";
-import { Fixtures } from "./Fixtures";
 import * as DEPLOY_IDS from "../../src/helpers/deploy-ids";
 import { EMPTY_STRING, ZERO, ZERO_ADDRESS } from "../../src/helpers/constants";
 import { NAFERC20 } from "../../typechain";
@@ -21,7 +19,7 @@ describe("NAFERC20 Interfaces", function () {
                 .getDeployedERC20Token(DEPLOY_IDS.TEST_NAFERC20_TOKEN_ID) as NAFERC20;
 
             const oracleInstance = await DeployHelper
-                .getDeployedPriceOracle(
+                .getDeployedTokenOracle(
                     `${DEPLOY_IDS.TEST_NAFERC20_TOKEN_ID}${DEPLOY_IDS.PRICE_ORACLE_ID_SUFFIX}`);
 
             const price = await oracleInstance.getPrice();
@@ -52,7 +50,7 @@ describe("NAFERC20 Interfaces", function () {
                 .getDeployedERC20Token(DEPLOY_IDS.TEST_NAFERC20_TOKEN_ID) as NAFERC20;
 
             const oracleInstance = await DeployHelper
-                .getDeployedPriceOracle(`${DEPLOY_IDS.TEST_NAFERC20_TOKEN_ID}${DEPLOY_IDS.PRICE_ORACLE_ID_SUFFIX}`);
+                .getDeployedTokenOracle(`${DEPLOY_IDS.TEST_NAFERC20_TOKEN_ID}${DEPLOY_IDS.PRICE_ORACLE_ID_SUFFIX}`);
 
             const price = await oracleInstance.getPrice();
             const data = utils.formatBytes32String(EMPTY_STRING);
@@ -135,7 +133,7 @@ describe("NAFERC20 Interfaces", function () {
                 .getDeployedERC20Token(DEPLOY_IDS.TEST_NAFERC20_TOKEN_ID) as NAFERC20;
 
             const oracleInstance = await DeployHelper
-                .getDeployedPriceOracle(`${DEPLOY_IDS.TEST_NAFERC20_TOKEN_ID}${DEPLOY_IDS.PRICE_ORACLE_ID_SUFFIX}`);
+                .getDeployedTokenOracle(`${DEPLOY_IDS.TEST_NAFERC20_TOKEN_ID}${DEPLOY_IDS.PRICE_ORACLE_ID_SUFFIX}`);
 
             const value = utils.parseEther("5");
             const price = await oracleInstance.getPrice();

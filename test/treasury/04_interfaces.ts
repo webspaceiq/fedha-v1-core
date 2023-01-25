@@ -48,7 +48,7 @@ describe("MintFERC20Treasury:Mint", function () {
         const reciepientAddr = utils.getAddress(CONSTANTS.FAKE_ADDRESS);
 
         const tokenInstance = await DeployHelper.getDeployedERC20Token("KLINK");
-        const oracleInstance = await DeployHelper.getDeployedPriceOracle("STALAG13");
+        const oracleInstance = await DeployHelper.getDeployedTokenOracle("STALAG13");
 
         await tokenInstance.mint(treasuryInstance.address, treasurySupplyAmount);
 

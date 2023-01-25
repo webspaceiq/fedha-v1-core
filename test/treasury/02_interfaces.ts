@@ -3,7 +3,7 @@ import { deployments, ethers } from "hardhat";
 import * as CONSTANTS from "../../src/helpers/constants";
 import { tEthereumAddress } from "../../src/types";
 import { BigNumber, Contract } from "ethers";
-import { FERC20__factory, IERC20__factory, IPriceOracle__factory, ITreasury } from "../../typechain";
+import { FERC20__factory, IERC20__factory, ITokenOracle__factory, ITreasury } from "../../typechain";
 import { DeployHelper } from "../../src/helpers/deploy-helper";
 import { ConfigUtil } from "../../src/utilities/config";
 import { ConfigNames, MARKET_NAME } from "../../src/helpers/env";
@@ -66,7 +66,7 @@ describe("Treasury Interfaces", function () {
             const [deployer] = await ethers.getSigners();
 
             const oracleAddr = await (treasuryInstance as Contract).getOracleAddr();
-            const oracleInstance = IPriceOracle__factory.connect(oracleAddr, deployer);
+            const oracleInstance = ITokenOracle__factory.connect(oracleAddr, deployer);
 
             expect(oracleAddr).to.equal(oracleInstance.address);
         });
@@ -196,7 +196,7 @@ describe("Treasury Interfaces", function () {
             const tokenInstance = FERC20__factory.connect(tokenAddr, deployer);
 
             const oracleAddr = await (treasuryInstance as Contract).getOracleAddr();
-            const oracleInstance = IPriceOracle__factory.connect(oracleAddr, deployer);
+            const oracleInstance = ITokenOracle__factory.connect(oracleAddr, deployer);
 
             await tokenInstance.mint(treasuryInstance.address, treasurySupplyAmount);
             let currentTreasuryTokenBalance = await tokenInstance.balanceOf(treasuryInstance.address);

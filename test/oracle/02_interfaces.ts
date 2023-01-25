@@ -5,16 +5,16 @@ import * as CONSTANTS from "../../src/helpers/constants";
 import { DeployHelper } from "../../src/helpers/deploy-helper";
 import * as DEPLOY_IDS from "../../src/helpers/deploy-ids";
 
-describe("Chainlink PriceOracle Interfaces", function () {
+describe("Chainlink TokenOracle Interfaces", function () {
     beforeEach(async () => {
-        await deployments.fixture(['testChainlinkPriceOracles']);
+        await deployments.fixture(['testChainlinkTokenOracles']);
     });
 
     describe("HttpOperatorClientBase", function () {
         describe("HTTP URL", function () {
             it("Should return HTTP endpoint URL", async function () {
                 const oracleInstance = await DeployHelper
-                    .getDeployedPriceOracle(DEPLOY_IDS.TEST_PRICE_ORACLE_ID) as Contract;
+                    .getDeployedTokenOracle(DEPLOY_IDS.TEST_PRICE_ORACLE_ID) as Contract;
 
                 expect(await oracleInstance.getHttpUrl()).to.equal(CONSTANTS.FAKE_BYTES);
             });
@@ -23,7 +23,7 @@ describe("Chainlink PriceOracle Interfaces", function () {
                 const httpURL = "http://api.fedhabank.com/v1/market/feed/";
 
                 const oracleInstance = await DeployHelper
-                    .getDeployedPriceOracle(DEPLOY_IDS.TEST_PRICE_ORACLE_ID) as Contract;
+                    .getDeployedTokenOracle(DEPLOY_IDS.TEST_PRICE_ORACLE_ID) as Contract;
 
                 await oracleInstance.setHttpUrl(httpURL);
 
@@ -35,14 +35,14 @@ describe("Chainlink PriceOracle Interfaces", function () {
                 const httpURL = "http://api.fedhabank.com/v1/market/feed/";
 
                 const oracleInstance = await DeployHelper
-                    .getDeployedPriceOracle(DEPLOY_IDS.TEST_PRICE_ORACLE_ID) as Contract;
+                    .getDeployedTokenOracle(DEPLOY_IDS.TEST_PRICE_ORACLE_ID) as Contract;
 
                 await expect(oracleInstance.connect(notDeployer).setHttpUrl(httpURL)).to.be.rejectedWith(Error)
             });
 
             it("Should fail to update HTTP endpoint URL given empty URL string", async function () {
                 const oracleInstance = await DeployHelper
-                    .getDeployedPriceOracle(DEPLOY_IDS.TEST_PRICE_ORACLE_ID) as Contract;
+                    .getDeployedTokenOracle(DEPLOY_IDS.TEST_PRICE_ORACLE_ID) as Contract;
 
                 await expect(oracleInstance.setHttpUrl(CONSTANTS.EMPTY_STRING)).to.be.rejectedWith(Error)
             });
@@ -51,7 +51,7 @@ describe("Chainlink PriceOracle Interfaces", function () {
                 const httpURL = "http://api.fedhabank.com/v1/market/feed/";
 
                 const oracleInstance = await DeployHelper
-                    .getDeployedPriceOracle(DEPLOY_IDS.TEST_PRICE_ORACLE_ID) as Contract;
+                    .getDeployedTokenOracle(DEPLOY_IDS.TEST_PRICE_ORACLE_ID) as Contract;
 
                 await expect(
                     oracleInstance.setHttpUrl(httpURL)
@@ -62,7 +62,7 @@ describe("Chainlink PriceOracle Interfaces", function () {
         describe("Job ID", function () {
             it("Should return the job id ", async function () {
                 const oracleInstance = await DeployHelper
-                    .getDeployedPriceOracle(DEPLOY_IDS.TEST_PRICE_ORACLE_ID) as Contract;
+                    .getDeployedTokenOracle(DEPLOY_IDS.TEST_PRICE_ORACLE_ID) as Contract;
 
                 expect(await oracleInstance.getJobId()).to.equal(CONSTANTS.FAKE_BYTES);
             });
@@ -71,7 +71,7 @@ describe("Chainlink PriceOracle Interfaces", function () {
                 const jobID = "0xe522b22b71dcfa4572fd8962b8d8a134ebde84a0375d141792302e05e5cedd66";
 
                 const oracleInstance = await DeployHelper
-                    .getDeployedPriceOracle(DEPLOY_IDS.TEST_PRICE_ORACLE_ID) as Contract;
+                    .getDeployedTokenOracle(DEPLOY_IDS.TEST_PRICE_ORACLE_ID) as Contract;
 
                 await oracleInstance.setJobId(jobID);
 
@@ -83,14 +83,14 @@ describe("Chainlink PriceOracle Interfaces", function () {
                 const jobID = "0xe522b22b71dcfa4572fd8962b8d8a134ebde84a0375d141792302e05e5cedd66";
 
                 const oracleInstance = await DeployHelper
-                    .getDeployedPriceOracle(DEPLOY_IDS.TEST_PRICE_ORACLE_ID) as Contract;
+                    .getDeployedTokenOracle(DEPLOY_IDS.TEST_PRICE_ORACLE_ID) as Contract;
 
                 await expect(oracleInstance.connect(notDeployer).setJobId(jobID)).to.be.rejectedWith(Error)
             });
 
             it("Should fail to update job id given empty string", async function () {
                 const oracleInstance = await DeployHelper
-                    .getDeployedPriceOracle(DEPLOY_IDS.TEST_PRICE_ORACLE_ID) as Contract;
+                    .getDeployedTokenOracle(DEPLOY_IDS.TEST_PRICE_ORACLE_ID) as Contract;
 
                 await expect(oracleInstance.setJobId(CONSTANTS.EMPTY_STRING)).to.be.rejectedWith(Error)
             });
@@ -99,7 +99,7 @@ describe("Chainlink PriceOracle Interfaces", function () {
                 const jobID = "0xe522b22b71dcfa4572fd8962b8d8a134ebde84a0375d141792302e05e5cedd66";
 
                 const oracleInstance = await DeployHelper
-                    .getDeployedPriceOracle(DEPLOY_IDS.TEST_PRICE_ORACLE_ID) as Contract;
+                    .getDeployedTokenOracle(DEPLOY_IDS.TEST_PRICE_ORACLE_ID) as Contract;
 
                 await expect(
                     oracleInstance.setJobId(jobID)
@@ -110,7 +110,7 @@ describe("Chainlink PriceOracle Interfaces", function () {
         describe("Operator Address", function () {
             it("Should return address of operator contract ", async function () {
                 const oracleInstance = await DeployHelper
-                    .getDeployedPriceOracle(DEPLOY_IDS.TEST_PRICE_ORACLE_ID) as Contract;
+                    .getDeployedTokenOracle(DEPLOY_IDS.TEST_PRICE_ORACLE_ID) as Contract;
 
                 const { address } = await DeployHelper
                     .getDeployedChainlinkMockOracle(
@@ -124,7 +124,7 @@ describe("Chainlink PriceOracle Interfaces", function () {
                 const address = "0x9A676e781A523b5d0C0e43731313A708CB607508";
 
                 const oracleInstance = await DeployHelper
-                    .getDeployedPriceOracle(DEPLOY_IDS.TEST_PRICE_ORACLE_ID) as Contract;
+                    .getDeployedTokenOracle(DEPLOY_IDS.TEST_PRICE_ORACLE_ID) as Contract;
 
                 await oracleInstance.setOperatorAddress(utils.getAddress(address));
 
@@ -137,7 +137,7 @@ describe("Chainlink PriceOracle Interfaces", function () {
                 const [deployer, notDeployer] = await ethers.getSigners();
 
                 const oracleInstance = await DeployHelper
-                    .getDeployedPriceOracle(DEPLOY_IDS.TEST_PRICE_ORACLE_ID) as Contract;
+                    .getDeployedTokenOracle(DEPLOY_IDS.TEST_PRICE_ORACLE_ID) as Contract;
 
                 await expect(
                     oracleInstance.connect(notDeployer).setOperatorAddress(address)
@@ -147,7 +147,7 @@ describe("Chainlink PriceOracle Interfaces", function () {
             it("Should fail to update operator contract address given zero address", async function () {
                 const { utils } = ethers;
                 const oracleInstance = await DeployHelper
-                    .getDeployedPriceOracle(DEPLOY_IDS.TEST_PRICE_ORACLE_ID) as Contract;
+                    .getDeployedTokenOracle(DEPLOY_IDS.TEST_PRICE_ORACLE_ID) as Contract;
 
                 await expect(
                     oracleInstance.setOperatorAddress(utils.getAddress(CONSTANTS.ZERO_ADDRESS))
@@ -159,7 +159,7 @@ describe("Chainlink PriceOracle Interfaces", function () {
                 const address = "0x9A676e781A523b5d0C0e43731313A708CB607508";
 
                 const oracleInstance = await DeployHelper
-                    .getDeployedPriceOracle(DEPLOY_IDS.TEST_PRICE_ORACLE_ID) as Contract;
+                    .getDeployedTokenOracle(DEPLOY_IDS.TEST_PRICE_ORACLE_ID) as Contract;
 
                 await expect(oracleInstance.setOperatorAddress(utils.getAddress(address)))
                     .to.emit(oracleInstance, "OperatorAddressUpdated");
@@ -172,7 +172,7 @@ describe("Chainlink PriceOracle Interfaces", function () {
                     .getDeployedERC20Token(DEPLOY_IDS.TEST_LINK_TOKEN_ID);
 
                 const oracleInstance = await DeployHelper
-                    .getDeployedPriceOracle(DEPLOY_IDS.TEST_PRICE_ORACLE_ID) as Contract;
+                    .getDeployedTokenOracle(DEPLOY_IDS.TEST_PRICE_ORACLE_ID) as Contract;
 
                 expect(await oracleInstance.getChainlinkToken()).to.equal(linkTokenInstance.address);
             });
@@ -184,7 +184,7 @@ describe("Chainlink PriceOracle Interfaces", function () {
                     .getDeployedERC20Token(DEPLOY_IDS.TEST_LINK_TOKEN_ID);
 
                 const oracleInstance = await DeployHelper
-                    .getDeployedPriceOracle(DEPLOY_IDS.TEST_PRICE_ORACLE_ID) as Contract;
+                    .getDeployedTokenOracle(DEPLOY_IDS.TEST_PRICE_ORACLE_ID) as Contract;
 
                 await linkTokenInstance.transfer(oracleInstance.address, "1000000000000000000")
 

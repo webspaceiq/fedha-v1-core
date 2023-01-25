@@ -55,7 +55,7 @@ import * as DEPLOY_IDS from "../../src/helpers/deploy-ids";
 
         it("Should mint tokens to specified reciever", async function () {
             const tokenInstance = await DeployHelper.getDeployedERC20Token("FRAULEIN");
-            const oracleInstance = await DeployHelper.getDeployedPriceOracle("CYNTHIA_LYNN");
+            const oracleInstance = await DeployHelper.getDeployedTokenOracle("CYNTHIA_LYNN");
 
             const { BigNumber, utils, provider } = ethers;
             const amountToMint = utils.parseEther("10");

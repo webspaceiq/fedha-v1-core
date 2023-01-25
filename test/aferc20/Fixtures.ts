@@ -1,7 +1,7 @@
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { serviceExecutor } from "../../src";
 import { DeployAFERC20ServiceContext } from "../../src/types";
-import { DeployAFERC20Service } from "../../src/services/token/deploy-aferc20";
+import { DeployAFERC20Service } from "../../src/services/fedha/token/deploy-aferc20";
 
 export class Fixtures {
     /**

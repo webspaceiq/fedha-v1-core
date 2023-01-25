@@ -10,15 +10,18 @@
     "artifacts"
   ],
   "scripts": {
+    "run-env": "npm ci && tail -f /dev/null",
     "cp-typechain": "cp typechain/*.d.ts ./dist/types/typechain",
     "build": "tsc --project lib.tsconfig.json && npm run cp-typechain",
     "clean": "rm -rf artifacts/ types/ dist/ typechain/",
     "compile": "SKIP_LOAD=true npx hardhat compile",
+    "node": "npx hardhat node --no-deploy",
+    "node:fork": "FORK=main npm run node --no-deploy",
+    "deploy": "if [ \"$SKIP_COMPILE\" = 'true' ]; then echo '[Warning] Skipping compilation'; else npm run compile; fi && npx hardhat deploy --no-compile",
+    "test": "npm run compile && npx hardhat test",
     "prepublish": "npm run clean && npm run compile && npm run build",
     "postpublish": "npm run publish-npm",
-    "publish-npm": "npm publish --access public --ignore-scripts --@webspaceiq:registry='https://registry.npmjs.org'",
-    "deploy": "if [ \"$SKIP_COMPILE\" = 'true' ]; then echo '[Warning] Skipping compilation'; else npm run compile; fi && npx hardhat deploy --no-compile",
-    "test": "npx hardhat test"
+    "publish-npm": "npm publish --access public --ignore-scripts --@webspaceiq:registry='https://registry.npmjs.org'"
   },
   "keywords": [],
   "author": "Fedha",
@@ -30,10 +33,11 @@
     "@openzeppelin/hardhat-upgrades": "^1.22.0",
     "ethers": "^5.7.2",
     "hardhat": "^2.12.4",
+    "hardhat-dependency-compiler": "^1.1.3",
     "hardhat-deploy": "^0.11.22"
   },
   "dependencies": {
-    "@aave/core-v3": "^1.16.2-beta.5",
+    "@aave/core-v3": "^1.17.1",
     "@chainlink/contracts": "^0.5.1",
     "@openzeppelin/contracts": "^4.8.0",
     "@openzeppelin/contracts-upgradeable": "^4.8.0",

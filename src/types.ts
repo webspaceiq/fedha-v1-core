@@ -92,7 +92,7 @@ export type IFedhaConfiguration = {
     Treasury: ITreasuryConfiguration;
     Governance: IGovernanceConfiguration;
     LinkTokenConfig: iParamsPerNetwork<string>;
-    PriceOracles: SymbolMap<IOracleConfigutation>;
+    TokenOracles: SymbolMap<IOracleConfigutation>;
     ReserveAssets: iParamsPerNetwork<SymbolMap<IAssetConfigutation>>;
 };
 
@@ -133,7 +133,7 @@ export type NAFERC20Options = FERC20Options & {
     oracleAddr: tEthereumAddress;
 };
 
-export type PriceOracleOptions = DeployOptions & {
+export type TokenOracleOptions = DeployOptions & {
     jobId: string;
     httpUrl?: string;
     linkTokenAddr: tEthereumAddress;
@@ -201,11 +201,11 @@ export type DeployAFERC20ServiceContext = DeployNAFERC20ServiceContext & {
     tokenAddr: tEthereumAddress;
 }
 
-export type DeploySimplePriceOracleServiceContext = DeployServiceContext & {
+export type DeploySimpleTokenOracleServiceContext = DeployServiceContext & {
     price: BigNumber;
 }
 
-export type DeployChainlinkPriceOracleServiceContext = DeployServiceContext & {
+export type DeployChainlinkTokenOracleServiceContext = DeployServiceContext & {
     jobId?: string;
     httpUrl?: string;
     linkTokenAddr: tEthereumAddress;
@@ -217,7 +217,7 @@ export type DeployChainlinkOracleOperatorServiceContext = DeployServiceContext &
     deployer: tEthereumAddress;
 }
 
-export type DeployChainlinkOracleAndOpratorServiceContext = Omit<DeployChainlinkPriceOracleServiceContext, "oracleOperatorAddr"> & {
+export type DeployChainlinkOracleAndOpratorServiceContext = Omit<DeployChainlinkTokenOracleServiceContext, "oracleOperatorAddr"> & {
 }
 
 

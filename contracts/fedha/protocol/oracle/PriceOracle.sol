@@ -4,9 +4,8 @@ pragma solidity 0.8.17;
 import "./ChainlinkOracle.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 import "@chainlink/contracts/src/v0.8/ChainlinkClient.sol";
-import {IPriceOracleGetter} from "@aave/core-v3/contracts/interfaces/IPriceOracleGetter.sol";
 
-contract PriceOracle is ChainlinkOracle {
+contract TokenOracle is ChainlinkOracle {
     using Strings for string;
     using Chainlink for Chainlink.Request;
 

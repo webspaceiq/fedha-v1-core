@@ -1,4 +1,3 @@
-import { loadFixture } from "@nomicfoundation/hardhat-network-helpers";
 import { expect } from "chai";
 import { deployments, ethers } from "hardhat";
 import { ZERO_ADDRESS } from "../../src/helpers/constants";

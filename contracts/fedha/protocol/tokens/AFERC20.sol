@@ -4,7 +4,7 @@ pragma solidity ^0.8.17;
 import "./FERC20.sol";
 import "../libraries/Errors.sol";
 import "../../interfaces/IAFERC20.sol";
-import "../../interfaces/IPriceOracle.sol";
+import "../../interfaces/ITokenOracle.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
@@ -12,7 +12,7 @@ import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 contract AFERC20 is IAFERC20, FERC20, ReentrancyGuard {
     using SafeMath for uint256;
 
-    IPriceOracle _priceOracle;
+    ITokenOracle _priceOracle;
     IERC20 public immutable _token;
 
     constructor(
@@ -27,7 +27,7 @@ contract AFERC20 is IAFERC20, FERC20, ReentrancyGuard {
         );
         require(token_ != address(0), Errors.ZERO_ASSET_ADDRESS_NOT_VALID);
         _token = IERC20(token_);
-        _priceOracle = IPriceOracle(priceOracle_);
+        _priceOracle = ITokenOracle(priceOracle_);
     }
 
     // Function to receive Ether. msg.data must be empty

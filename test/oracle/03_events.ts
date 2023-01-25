@@ -6,9 +6,9 @@ import { DeployHelper } from "../../src/helpers/deploy-helper";
 import { HelperFunctions } from "../../src/utilities/helper-functions";
 
 
-describe("PriceOracle Events", function () {
+describe("TokenOracle Events", function () {
     beforeEach(async () => {
-        await deployments.fixture(['testChainlinkPriceOracles']);
+        await deployments.fixture(['testChainlinkTokenOracles']);
     });
     
     it("Should successfully make an API call", async function () {
@@ -18,7 +18,7 @@ describe("PriceOracle Events", function () {
             .getDeployedERC20Token(DEPLOY_IDS.TEST_LINK_TOKEN_ID);
 
         const oracleInstance = await DeployHelper
-            .getDeployedPriceOracle(DEPLOY_IDS.TEST_PRICE_ORACLE_ID) as Contract;
+            .getDeployedTokenOracle(DEPLOY_IDS.TEST_PRICE_ORACLE_ID) as Contract;
 
         await linkTokenInstance.transfer(oracleInstance.address, "1000000000000000000");
 
@@ -35,7 +35,7 @@ describe("PriceOracle Events", function () {
             .getDeployedERC20Token(DEPLOY_IDS.TEST_LINK_TOKEN_ID);
 
         const oracleInstance = await DeployHelper
-            .getDeployedPriceOracle(DEPLOY_IDS.TEST_PRICE_ORACLE_ID) as Contract;
+            .getDeployedTokenOracle(DEPLOY_IDS.TEST_PRICE_ORACLE_ID) as Contract;
 
         await linkTokenInstance.transfer(oracleInstance.address, "1000000000000000000");
 
@@ -63,7 +63,7 @@ describe("PriceOracle Events", function () {
             .getDeployedERC20Token(DEPLOY_IDS.TEST_LINK_TOKEN_ID);
 
         const oracleInstance = await DeployHelper
-            .getDeployedPriceOracle(DEPLOY_IDS.TEST_PRICE_ORACLE_ID) as Contract;
+            .getDeployedTokenOracle(DEPLOY_IDS.TEST_PRICE_ORACLE_ID) as Contract;
 
         await linkTokenInstance.transfer(oracleInstance.address, "1000000000000000000");
 
