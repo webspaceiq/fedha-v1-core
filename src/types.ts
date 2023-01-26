@@ -58,7 +58,6 @@ export interface IOracleConfigutation {
     httpUrl?: string;
     address?: tEthereumAddress;
 }
-
 export interface IAssetConfigutation {
     type: string;
     name: string;
@@ -66,6 +65,11 @@ export interface IAssetConfigutation {
     decimals?: BigNumber;
     address?: tEthereumAddress;
     oracleAddr?: tEthereumAddress;
+}
+
+export interface IAssetPairConfigutation {
+    tokenA: string;
+    tokenB: string;
 }
 
 export interface ITreasuryConfiguration {
@@ -94,6 +98,7 @@ export type IFedhaConfiguration = {
     LinkTokenConfig: iParamsPerNetwork<string>;
     TokenOracles: SymbolMap<IOracleConfigutation>;
     ReserveAssets: iParamsPerNetwork<SymbolMap<IAssetConfigutation>>;
+    AssetPairs: iParamsPerNetwork<SymbolMap<IAssetPairConfigutation>>;
 };
 
 export enum GovernanceProposalState {
@@ -178,6 +183,9 @@ export type DeployServiceContext = {
 
 export type DeployTokensServiceContext = DeployServiceContext & {
     assets: IAssetConfigutation[];
+}
+export type DeployUniswapPairsV2ServiceContext = DeployServiceContext & {
+    assetPairs: IAssetPairConfigutation[];
 }
 
 export type DeployTreasuryServiceContext = DeployServiceContext & {

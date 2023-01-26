@@ -4,6 +4,7 @@ import { TokenOracles } from "./oracles";
 import { Governance } from "./governance";
 import { TREASURY_TYPE_TRANSFER } from "../../src/helpers/constants";
 import { eEthereumNetwork, ePolygonNetwork, IFedhaConfiguration } from "../../src/types";
+import { assetPairs } from "./pairs";
 
 export const FedhaMarket: IFedhaConfiguration = {
     MarketId: "Fedha_Treasury",
@@ -14,6 +15,13 @@ export const FedhaMarket: IFedhaConfiguration = {
         [eEthereumNetwork.hardhat]: assets,
         [ePolygonNetwork.polygon]: assets,
         [ePolygonNetwork.mumbai]: assets,
+    },
+    AssetPairs: {
+        [eEthereumNetwork.main]: assetPairs,
+        [eEthereumNetwork.goerli]: assetPairs,
+        [eEthereumNetwork.hardhat]: assetPairs,
+        [ePolygonNetwork.polygon]: assetPairs,
+        [ePolygonNetwork.mumbai]: assetPairs,
     },
     LinkTokenConfig: {
         [eEthereumNetwork.main]: "0x514910771AF9Ca656af840dff83E8264EcF986CA",

@@ -39,6 +39,23 @@ export class ConfigUtil {
         return assets;
     }
 
+    public static getAssetPairs(
+        configuration: TYPES.IFedhaConfiguration,
+        network: TYPES.eNetwork): TYPES.IAssetPairConfigutation[] {
+
+        const assetPairs = ConfigUtil.getRequiredParamPerNetwork
+            <TYPES.SymbolMap<TYPES.IAssetPairConfigutation>>(configuration, 'AssetPairs', network);
+
+        const assets: TYPES.IAssetPairConfigutation[] = []
+        const pairSymbols = Object.keys(assetPairs);
+
+        for (let index = 0; index < pairSymbols.length; index++) {
+            const symbol = pairSymbols[index];
+            assets.push(assetPairs[symbol]);
+        }
+        return assets;
+    }
+
     public static getTokenOracles(
         configuration: TYPES.IFedhaConfiguration): TYPES.IOracleConfigutation[] {
 

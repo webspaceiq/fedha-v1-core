@@ -31,6 +31,6 @@ const func: DeployFunction = async function (
 };
 
 export default func;
-func.dependencies = [];
 func.id = "Tokens";
 func.tags = [ "tokens", "core"];
+func.dependencies = ["tokenOracles"];

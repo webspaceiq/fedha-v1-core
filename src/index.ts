@@ -13,6 +13,8 @@ import { DeployChainlinkOracleOperatorServiceInfo } from "./services/fedha/oracl
 import { DeployTimelockServiceInfo } from "./services/fedha/governance/deploy-timelock";
 import { DeployGovernorServiceInfo } from "./services/fedha/governance/deploy-governor";
 import { CreateProposalServiceInfo } from "./services/fedha/governance/create-proposal";
+import { DeployUniswapFactoryV2ServiceInfo } from "./services/uniswap/deploy-factory";
+import { DeployUniswapPairsV2ServiceInfo } from "./services/uniswap/deploy-pairs";
 
 export const repository = new ServiceRepository([
     DeployTokensServiceInfo,
@@ -28,6 +30,8 @@ export const repository = new ServiceRepository([
     DeployChainlinkTokenOracleServiceInfo,
     DeployChainlinkOracleOperatorServiceInfo,
     DeployChainlinkOracleAndOpratorServiceInfo,
-    CreateProposalServiceInfo
+    CreateProposalServiceInfo,
+    DeployUniswapFactoryV2ServiceInfo,
+    DeployUniswapPairsV2ServiceInfo
 ]);
 export const serviceExecutor = new ServiceExecutor(repository);

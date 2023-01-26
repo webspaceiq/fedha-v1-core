@@ -11,7 +11,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -21,15 +20,30 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+
     - run: npm ci
+
     - run: npm run build --if-present
       env:
         ALCHEMY_KEY: ${{ secrets.ALCHEMY_KEY }}
+
     - run: npm test
       env:
         ALCHEMY_KEY: ${{ secrets.ALCHEMY_KEY }}
+
+  discordNotify:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Discord notification
+      env:
+        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
+      uses: Ilshidur/action-discord@master
+      with:
+        args: 'New commit has been pushed to {{ EVENT_PAYLOAD.repository.full_name }}.'

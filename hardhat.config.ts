@@ -79,6 +79,12 @@ const config: HardhatUserConfig = {
                 },
             },
             {
+                version: "0.5.16",
+                settings: {
+                    optimizer: { enabled: true, runs: 200 },
+                },
+            },
+            {
                 version: "0.5.5",
                 settings: {
                     optimizer: { enabled: true, runs: 200 },
@@ -183,37 +189,11 @@ const config: HardhatUserConfig = {
             "@aave/core-v3/contracts/dependencies/openzeppelin/contracts/IERC20.sol",
             "@aave/core-v3/contracts/mocks/oracle/PriceOracle.sol",
             "@aave/core-v3/contracts/mocks/tokens/MintableDelegationERC20.sol",
-            /* "@aave/periphery-v3/contracts/misc/UiPoolDataProviderV3.sol",
-            "@aave/periphery-v3/contracts/misc/WalletBalanceProvider.sol",
-            "@aave/periphery-v3/contracts/misc/WrappedTokenGatewayV3.sol",
-            "@aave/periphery-v3/contracts/misc/interfaces/IWETH.sol",
-            "@aave/periphery-v3/contracts/misc/UiIncentiveDataProviderV3.sol",
-            "@aave/periphery-v3/contracts/rewards/RewardsController.sol",
-            "@aave/periphery-v3/contracts/rewards/transfer-strategies/StakedTokenTransferStrategy.sol",
-            "@aave/periphery-v3/contracts/rewards/transfer-strategies/PullRewardsTransferStrategy.sol",
-            "@aave/periphery-v3/contracts/rewards/EmissionManager.sol",
-            "@aave/periphery-v3/contracts/mocks/WETH9Mock.sol",
-            "@aave/periphery-v3/contracts/mocks/testnet-helpers/Faucet.sol",
-            "@aave/periphery-v3/contracts/mocks/testnet-helpers/TestnetERC20.sol",
-            "@aave/periphery-v3/contracts/treasury/Collector.sol",
-            "@aave/periphery-v3/contracts/treasury/CollectorController.sol",
-            "@aave/periphery-v3/contracts/treasury/AaveEcosystemReserveV2.sol",
-            "@aave/periphery-v3/contracts/treasury/AaveEcosystemReserveController.sol",
-            "@aave/periphery-v3/contracts/adapters/paraswap/ParaSwapLiquiditySwapAdapter.sol",
-            "@aave/periphery-v3/contracts/adapters/paraswap/ParaSwapRepayAdapter.sol",
-            "@aave/safety-module/contracts/stake/StakedAave.sol",
-            "@aave/safety-module/contracts/stake/StakedAaveV2.sol",
-            "@aave/safety-module/contracts/proposals/extend-stkaave-distribution/StakedTokenV2Rev3.sol", */
+            "@uniswap/v2-core/contracts/UniswapV2Factory.sol",
+            "@uniswap/v2-periphery/contracts/UniswapV2Router02.sol",
+            
         ],
-    }/* ,
-    external: {
-      contracts: [
-        {
-          artifacts: './artifacts',
-          deploy: './src/deploy',
-        },
-      ],
-    }, */
+    }
 };
 
 export default config;

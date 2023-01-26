@@ -15,7 +15,7 @@ export const assets: SymbolMap<IAssetConfigutation> = {
     DZDC: {
         type: ASSET_TYPE_NAFERC20,
         name: "Algerian Dinar",
-        symbol: "AOAC",
+        symbol: "DZDC",
     },
     EGPC: {
         type: ASSET_TYPE_NAFERC20,

@@ -27,3 +27,6 @@ export const TREASURY_ID = "GovernanceTreasury";
 export const TEST_TREASURY_ID = "GovernanceTestTreasury";
 export const TEST_TRANSFER_FROM_TREASURY_ID = "GovernanceTestTransferFromTreasury";
 export const TEST_MINT_TREASURY_ID = "GovernanceTestMintTreasury";
+export const UNISWAP_FACTORY_ID = "UniswapFactoryV2";
+export const UNISWAP_WETH_ID = "UniswapWETH";
+export const UNISWAP_ROUTER_ID = "UniswapRouter02";
