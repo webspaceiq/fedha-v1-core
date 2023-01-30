@@ -2,8 +2,9 @@ import { deployments, ethers } from "hardhat";
 import * as TYPES from "../../src/types";
 import * as TYPECHAIN from "../../typechain";
 import { COMMON_DEPLOY_PARAMS } from "../../src/helpers/env";
-import { PRICE_ORACLE_ID } from "./deploy-ids";
+import { AAVE_POOL_CONFIGURATOR_PROXY_ID, PRICE_ORACLE_ID } from "./deploy-ids";
 import { Contract } from "ethers";
+import { ConfigUtil } from "../utilities/config";
 
 export class DeployHelper {
 
@@ -26,7 +27,7 @@ export class DeployHelper {
         const { abi, address } = await deployments.get(id);
         return await ethers.getContractAt(abi, address) as TYPECHAIN.FERC20;
     }
-    
+
     public static async getDeployedTokenOracle(id: string): Promise<TYPECHAIN.ITokenOracle> {
         const { abi, address } = await deployments.get(id);
         return await ethers.getContractAt(abi, address) as TYPECHAIN.ITokenOracle;
@@ -51,7 +52,7 @@ export class DeployHelper {
         const { abi, address } = await deployments.get(id);
         return await ethers.getContractAt(abi, address) as Contract;
     }
-    
+
     public static async deployMockOracle(id: string, owner: TYPES.tEthereumAddress): Promise<TYPECHAIN.ITokenOracle> {
         const priceOracleDeployment = await deployments.deploy(`${id}${PRICE_ORACLE_ID}`, {
             contract: "MockTokenOracle",
@@ -78,5 +79,37 @@ export class DeployHelper {
         return await ethers.getContractAt(
             priceOracleDeployment.abi, priceOracleDeployment.address) as TYPECHAIN.ITokenOracle;
     }
-    
+
+    public static async getContract<ContractType extends Contract>(
+        id: string,
+        address?: TYPES.tEthereumAddress
+    ): Promise<ContractType> {
+        const artifact = await deployments.getArtifact(id);
+        return ethers.getContractAt(
+            artifact.abi,
+            address || (await (await deployments.get(id)).address)
+        ) as any as ContractType;
+    };
+
+    public static async getPoolConfiguratorProxy(address?: TYPES.tEthereumAddress): Promise<TYPECHAIN.PoolConfigurator> {
+        return DeployHelper.getContract(
+            "PoolConfigurator",
+            address || (await deployments.get(AAVE_POOL_CONFIGURATOR_PROXY_ID)).address
+        );
+    }
+
+    public static async getAddressesOfAllAssets(
+        configuration: TYPES.IFedhaConfiguration, network: TYPES.eNetwork): Promise<TYPES.ITokenAddress> {
+        const assets = ConfigUtil.getReserveAssets(configuration, network);
+
+        const tokenAddresses: TYPES.ITokenAddress = {};
+        for (let index = 0; index < assets.length; index++) {
+            const { symbol } = assets[index];
+            const { address } = await this.getDeployedContract(symbol);
+            tokenAddresses[symbol] = address;
+        }
+        return tokenAddresses;
+    }
+
+
 }

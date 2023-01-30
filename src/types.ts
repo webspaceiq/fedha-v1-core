@@ -8,6 +8,113 @@ export type tBigNumberTokenBigUnits = BigNumber;
 export type tStringTokenSmallUnits = string; // 1 wei, or 1 basic unit of USDC, or 1 basic unit of DAI
 export type tBigNumberTokenSmallUnits = BigNumber;
 
+
+export interface ITokenAddress {
+    [token: string]: tEthereumAddress;
+  }
+  
+  export interface ITokenDecimals {
+    [token: string]: number;
+  }
+export interface iAssetCommon<T> {
+    [key: string]: T;
+}
+
+export interface iAssetBase<T> {
+    WETH: T;
+    DAI: T;
+    TUSD: T;
+    USDC: T;
+    USDT: T;
+    SUSD: T;
+    AAVE: T;
+    BAT: T;
+    MKR: T;
+    LINK: T;
+    KNC: T;
+    WBTC: T;
+    MANA: T;
+    ZRX: T;
+    SNX: T;
+    BUSD: T;
+    YFI: T;
+    UNI: T;
+    USD: T;
+    REN: T;
+    ENJ: T;
+    UniDAIWETH: T;
+    UniWBTCWETH: T;
+    UniAAVEWETH: T;
+    UniBATWETH: T;
+    UniDAIUSDC: T;
+    UniCRVWETH: T;
+    UniLINKWETH: T;
+    UniMKRWETH: T;
+    UniRENWETH: T;
+    UniSNXWETH: T;
+    UniUNIWETH: T;
+    UniUSDCWETH: T;
+    UniWBTCUSDC: T;
+    UniYFIWETH: T;
+    BptWBTCWETH: T;
+    BptBALWETH: T;
+    WMATIC: T;
+    STAKE: T;
+    xSUSHI: T;
+    AVAX: T;
+}
+
+export type iAssetsWithoutETH<T> = Omit<iAssetBase<T>, "ETH">;
+
+export type iAssetsWithoutUSD<T> = Omit<iAssetBase<T>, "USD">;
+
+export type iAavePoolAssets<T> = Pick<
+    iAssetsWithoutUSD<T>,
+    "DAI" | "USDC" | "AAVE" | "LINK" | "WBTC" | "WETH"
+>;
+
+export type iLpPoolAssets<T> = Pick<
+    iAssetsWithoutUSD<T>,
+    | "DAI"
+    | "USDC"
+    | "USDT"
+    | "WBTC"
+    | "WETH"
+    | "UniDAIWETH"
+    | "UniWBTCWETH"
+    | "UniAAVEWETH"
+    | "UniBATWETH"
+    | "UniDAIUSDC"
+    | "UniCRVWETH"
+    | "UniLINKWETH"
+    | "UniMKRWETH"
+    | "UniRENWETH"
+    | "UniSNXWETH"
+    | "UniUNIWETH"
+    | "UniUSDCWETH"
+    | "UniWBTCUSDC"
+    | "UniYFIWETH"
+    | "BptWBTCWETH"
+    | "BptBALWETH"
+>;
+
+export type iMaticPoolAssets<T> = Pick<
+    iAssetsWithoutUSD<T>,
+    "DAI" | "USDC" | "USDT" | "WBTC" | "WETH" | "WMATIC" | "AAVE"
+>;
+
+export type iXDAIPoolAssets<T> = Pick<
+    iAssetsWithoutUSD<T>,
+    "DAI" | "USDC" | "USDT" | "WBTC" | "WETH" | "STAKE"
+>;
+
+export type iAvalanchePoolAssets<T> = Pick<
+    iAssetsWithoutUSD<T>,
+    "WETH" | "DAI" | "USDC" | "USDT" | "AAVE" | "WBTC" | "AVAX"
+>;
+
+export type iMultiPoolsAssets<T> = iAssetCommon<T> | iAavePoolAssets<T>;
+
 export interface SymbolMap<T> {
     [symbol: string]: T;
 }
@@ -93,13 +200,111 @@ export interface IGovernanceConfiguration {
 
 export type IFedhaConfiguration = {
     MarketId: string;
+    ProviderId: number;
+    ATokenNamePrefix: string;
+    StableDebtTokenNamePrefix: string;
+    VariableDebtTokenNamePrefix: string;
+    SymbolPrefix: string;
+    OracleQuoteCurrency: string;
+    OracleQuoteUnit: string;
+    OracleQuoteCurrencyAddress: tEthereumAddress;
     Treasury: ITreasuryConfiguration;
     Governance: IGovernanceConfiguration;
     LinkTokenConfig: iParamsPerNetwork<string>;
     TokenOracles: SymbolMap<IOracleConfigutation>;
     ReserveAssets: iParamsPerNetwork<SymbolMap<IAssetConfigutation>>;
+    ReservesConfig: SymbolMap<any>;
     AssetPairs: iParamsPerNetwork<SymbolMap<IAssetPairConfigutation>>;
+    FlashLoanPremiums: {
+        total: number;
+        protocol: number;
+    };
+    RateStrategies: IStrategy;
 };
+
+// AAVE
+export enum eContractid {
+    Example = "Example",
+    PoolAddressesProvider = "PoolAddressesProvider",
+    MintableERC20 = "MintableERC20",
+    MintableDelegationERC20 = "MintableDelegationERC20",
+    PoolAddressesProviderRegistry = "PoolAddressesProviderRegistry",
+    PoolConfigurator = "PoolConfigurator",
+    ValidationLogic = "ValidationLogic",
+    ReserveLogic = "ReserveLogic",
+    GenericLogic = "GenericLogic",
+    Pool = "Pool",
+    PriceOracle = "PriceOracle",
+    Proxy = "Proxy",
+    MockAggregator = "MockAggregator",
+    AaveOracle = "AaveOracle",
+    DefaultReserveInterestRateStrategy = "DefaultReserveInterestRateStrategy",
+    LendingPoolCollateralManager = "LendingPoolCollateralManager",
+    InitializableAdminUpgradeabilityProxy = "InitializableAdminUpgradeabilityProxy",
+    MockFlashLoanReceiver = "MockFlashLoanReceiver",
+    WalletBalanceProvider = "WalletBalanceProvider",
+    AToken = "AToken",
+    MockAToken = "MockAToken",
+    DelegationAwareAToken = "DelegationAwareAToken",
+    MockStableDebtToken = "MockStableDebtToken",
+    MockVariableDebtToken = "MockVariableDebtToken",
+    AaveProtocolDataProvider = "AaveProtocolDataProvider",
+    IERC20Detailed = "IERC20Detailed",
+    StableDebtToken = "StableDebtToken",
+    VariableDebtToken = "VariableDebtToken",
+    FeeProvider = "FeeProvider",
+    TokenDistributor = "TokenDistributor",
+    StableAndVariableTokensHelper = "StableAndVariableTokensHelper",
+    ATokensAndRatesHelper = "ATokensAndRatesHelper",
+    UiPoolDataProviderV3 = "UiPoolDataProviderV3",
+    WrappedTokenGatewayV3 = "WrappedTokenGatewayV3",
+    WETH = "WETH",
+}
+
+export interface IReserveParams
+    extends IReserveBorrowParams,
+    IReserveCollateralParams {
+    aTokenImpl: eContractid;
+    reserveFactor: string;
+    supplyCap: string;
+    strategy: IInterestRateStrategyParams;
+}
+
+export interface IStrategy {
+    [key: string]: IInterestRateStrategyParams;
+}
+
+export interface IInterestRateStrategyParams {
+    name: string;
+    optimalUsageRatio: string;
+    baseVariableBorrowRate: string;
+    variableRateSlope1: string;
+    variableRateSlope2: string;
+    stableRateSlope1: string;
+    stableRateSlope2: string;
+    baseStableRateOffset: string;
+    stableRateExcessOffset: string;
+    optimalStableToTotalDebtRatio: string;
+}
+
+export interface IReserveBorrowParams {
+    borrowingEnabled: boolean;
+    stableBorrowRateEnabled: boolean;
+    reserveDecimals: string;
+    borrowCap: string;
+    debtCeiling: string;
+    borrowableIsolation: boolean;
+    flashLoanEnabled: boolean;
+}
+
+export interface IReserveCollateralParams {
+    baseLTVAsCollateral: string;
+    liquidationThreshold: string;
+    liquidationBonus: string;
+    liquidationProtocolFee?: string;
+}
+
+
 
 export enum GovernanceProposalState {
     Pending,
@@ -154,7 +359,7 @@ export type TransferFromFERC20TreasuryDeployOptions = TreasuryDeployOptions & {
     vaultAddr: tEthereumAddress;
 };
 
-export type DeployGovernanceOptions =  {
+export type DeployGovernanceOptions = {
     owner: any;
     governorId: string;
     governorName: string;
@@ -168,7 +373,7 @@ export type DeployGovernanceOptions =  {
 };
 
 export type ProposalRequest = {
-    governorInstance: FERC20VotesGovernor, 
+    governorInstance: FERC20VotesGovernor,
     targets: tEthereumAddress[];
     values: BigNumber[];
     calldatas: any[];

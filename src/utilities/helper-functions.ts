@@ -31,7 +31,4 @@ export class HelperFunctions {
         return hex.startsWith("0x") ? hex : `0x${hex}`
     }
 
-
-    public static waitForTx = async (tx: ContractTransaction) => await tx.wait(1) 
-
 }

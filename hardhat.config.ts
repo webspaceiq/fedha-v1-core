@@ -98,10 +98,6 @@ const config: HardhatUserConfig = {
             },
         ],
     },
-    typechain: {
-        outDir: "typechain",
-        target: "ethers-v5",
-    },
     networks: {
         hardhat: {
             hardfork: "merge",
@@ -143,6 +139,16 @@ const config: HardhatUserConfig = {
     },
     namedAccounts: {
         ...DEFAULT_NAMED_ACCOUNTS,
+    },
+    typechain: {
+        outDir: "typechain",
+        target: "ethers-v5",
+        // externalArtifacts: [
+        //     'node_modules/@aave/core-v3/artifacts/contracts/**/*[!dbg].json',
+        //     'node_modules/@aave/core-v3/artifacts/contracts/**/**/*[!dbg].json',
+        //     'node_modules/@aave/core-v3/artifacts/contracts/**/**/**/*[!dbg].json',
+        //     'node_modules/@aave/core-v3/artifacts/contracts/mocks/tokens/WETH9Mocked.sol/WETH9Mocked.json',
+        // ],
     },
     dependencyCompiler: {
         paths: [
@@ -189,9 +195,26 @@ const config: HardhatUserConfig = {
             "@aave/core-v3/contracts/dependencies/openzeppelin/contracts/IERC20.sol",
             "@aave/core-v3/contracts/mocks/oracle/PriceOracle.sol",
             "@aave/core-v3/contracts/mocks/tokens/MintableDelegationERC20.sol",
+            "@aave/periphery-v3/contracts/misc/UiPoolDataProviderV3.sol",
+            "@aave/periphery-v3/contracts/misc/WalletBalanceProvider.sol",
+            "@aave/periphery-v3/contracts/misc/WrappedTokenGatewayV3.sol",
+            "@aave/periphery-v3/contracts/misc/interfaces/IWETH.sol",
+            "@aave/periphery-v3/contracts/misc/UiIncentiveDataProviderV3.sol",
+            "@aave/periphery-v3/contracts/rewards/RewardsController.sol",
+            "@aave/periphery-v3/contracts/rewards/transfer-strategies/StakedTokenTransferStrategy.sol",
+            "@aave/periphery-v3/contracts/rewards/transfer-strategies/PullRewardsTransferStrategy.sol",
+            "@aave/periphery-v3/contracts/rewards/EmissionManager.sol",
+            "@aave/periphery-v3/contracts/mocks/WETH9Mock.sol",
+            "@aave/periphery-v3/contracts/mocks/testnet-helpers/Faucet.sol",
+            "@aave/periphery-v3/contracts/mocks/testnet-helpers/TestnetERC20.sol",
+            "@aave/periphery-v3/contracts/treasury/Collector.sol",
+            "@aave/periphery-v3/contracts/treasury/CollectorController.sol",
+            "@aave/periphery-v3/contracts/treasury/AaveEcosystemReserveV2.sol",
+            "@aave/periphery-v3/contracts/treasury/AaveEcosystemReserveController.sol",
+            "@aave/periphery-v3/contracts/adapters/paraswap/ParaSwapLiquiditySwapAdapter.sol",
+            "@aave/periphery-v3/contracts/adapters/paraswap/ParaSwapRepayAdapter.sol",
             "@uniswap/v2-core/contracts/UniswapV2Factory.sol",
             "@uniswap/v2-periphery/contracts/UniswapV2Router02.sol",
-            
         ],
     }
 };

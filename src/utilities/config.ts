@@ -68,6 +68,15 @@ export class ConfigUtil {
         return oracles;
     }
 
+    public static getParamPerNetwork<T>(
+        param: TYPES.iParamsPerNetwork<T> | undefined,
+        network: TYPES.eNetwork
+    ): T | undefined {
+        if (!param) return undefined;
+
+        return param[network];
+    };
+
     public static getRequiredParamPerNetwork = <T>(
         configuration: TYPES.IFedhaConfiguration,
         key: keyof TYPES.IFedhaConfiguration,

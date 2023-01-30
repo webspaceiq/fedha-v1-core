@@ -19,5 +19,6 @@ jobs:
       - uses: google-github-actions/release-please-action@v3
         id: release
         with:
+          env: ${{ secrets.pat }}
           release-type: node
           package-name: ${{ github.event.repository.name }}
