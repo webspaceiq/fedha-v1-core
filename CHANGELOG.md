@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.2](https://github.com/webspaceiq/fedha-v1-core/compare/v1.3.1...v1.3.2) (2023-01-30)
+
+
+### Bug Fixes
+
+* Aave deployment and initialization scripts ([7d79968](https://github.com/webspaceiq/fedha-v1-core/commit/7d7996818530fd9133a88f7587a2616f3cd072f8))
+
 ## [1.3.1](https://github.com/webspaceiq/fedha-v1-core/compare/v1.3.0...v1.3.1) (2023-01-23)
 
 
